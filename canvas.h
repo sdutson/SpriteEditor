@@ -16,7 +16,6 @@ class Canvas : public QWidget
 
     QImage image; // TODO: Set this back to referance.
 
-    QSize widgetSize; // TODO: Are we enforcing the sprite we a square? We probulay should.
 
     bool scribbling;
 

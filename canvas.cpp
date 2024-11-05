@@ -18,8 +18,7 @@ Canvas::~Canvas()
 
 void Canvas::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
-    widgetSize = size();
-    QImage scaledImage = image.scaled(widgetSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QImage scaledImage = image.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     painter.drawImage(0, 0, scaledImage);
 }
 

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <QImage>
+#include <QSize>
 
 namespace Ui {
 class Canvas;
@@ -13,7 +14,10 @@ class Canvas : public QWidget
 {
     Q_OBJECT
 
-    QImage& image;
+    QImage image; // TODO: Set this back to referance.
+
+    QSize widgetSize; // TODO: Are we enforcing the sprite we a square? We probulay should.
+
     bool scribbling;
 
 public:
@@ -30,12 +34,12 @@ private:
 
     void paintEvent(QPaintEvent *event) override;
 
-protected:
-    void mousePressEvent(QMouseEvent *event) override;
+// protected:
+//     void mousePressEvent(QMouseEvent *event) override;
 
-    void mouseMoveEvent(QMouseEvent *event) override;
+//     void mouseMoveEvent(QMouseEvent *event) override;
 
-    void mouseReleaseEvent(QMouseEvent *event) override;
+//     void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
 #endif // CANVAS_H

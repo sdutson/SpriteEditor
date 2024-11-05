@@ -1,13 +1,14 @@
 #include "canvas.h"
 #include "ui_canvas.h"
+#include <QImage>
+#include <QSize>
 
 Canvas::Canvas(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Canvas)
-    , image("me.png")
+    , image("/Users/samueldutson/QT/SpriteEditor/me.png")
 {
     ui->setupUi(this);
-    update();
 }
 
 Canvas::~Canvas()
@@ -15,11 +16,11 @@ Canvas::~Canvas()
     delete ui;
 }
 
-void Canvas::paintEvent(QPaintEvent *event)
-{
+void Canvas::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
-    QRect dirtyRect = event->rect();
-    painter.drawImage(dirtyRect, image, dirtyRect);
+    widgetSize = size();
+    QImage scaledImage = image.scaled(widgetSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    painter.drawImage(0, 0, scaledImage);
 }
 
 // void ScribbleArea::mousePressEvent(QMouseEvent *event)

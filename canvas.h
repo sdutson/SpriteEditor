@@ -17,10 +17,15 @@ class Canvas : public QWidget
 
 public:
     explicit Canvas(QWidget *parent = nullptr);
+
     ~Canvas();
+
+    void switchImage(QImage& newImage);
 
 private:
     Ui::Canvas *ui;
+
+    void openImage();
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

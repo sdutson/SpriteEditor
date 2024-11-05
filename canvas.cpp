@@ -13,7 +13,6 @@ Canvas::~Canvas()
     delete ui;
 }
 
-
 void ScribbleArea::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {

@@ -52,10 +52,14 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../main.cpp \
-		../../view.cpp moc_view.cpp
-OBJECTS       = main.o \
+SOURCES       = ../../canvas.cpp \
+		../../main.cpp \
+		../../view.cpp moc_canvas.cpp \
+		moc_view.cpp
+OBJECTS       = canvas.o \
+		main.o \
 		view.o \
+		moc_canvas.o \
 		moc_view.o
 DIST          = /Users/6.8.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/6.8.0/macos/mkspecs/features/device_config.prf \
@@ -238,6 +242,7 @@ DIST          = /Users/6.8.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/6.8.0/macos/mkspecs/features/qt_config.prf \
 		/Users/6.8.0/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/6.8.0/macos/mkspecs/features/spec_post.prf \
+		../../.qmake.stash \
 		/Users/6.8.0/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/6.8.0/macos/mkspecs/features/mac/sdk.prf \
 		/Users/6.8.0/macos/mkspecs/features/toolchain.prf \
@@ -267,7 +272,9 @@ DIST          = /Users/6.8.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/6.8.0/macos/mkspecs/features/exceptions.prf \
 		/Users/6.8.0/macos/mkspecs/features/yacc.prf \
 		/Users/6.8.0/macos/mkspecs/features/lex.prf \
-		../../../../SpriteEditor.pro ../../view.h ../../main.cpp \
+		../../../../SpriteEditor.pro ../../canvas.h \
+		../../view.h ../../canvas.cpp \
+		../../main.cpp \
 		../../view.cpp
 QMAKE_TARGET  = SpriteEditor
 DESTDIR       = 
@@ -277,7 +284,7 @@ TARGET        = SpriteEditor.app/Contents/MacOS/SpriteEditor
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 14.5
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/samueldutson/QT/SpriteEditor/build/Qt_6_8_0_for_macOS-Debug/.qmake.stash
 EXPORT_VALID_ARCHS = x86_64 arm64
 EXPORT_DEFAULT_ARCHS = arm64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -289,7 +296,7 @@ include /Users/samueldutson/QT/6.8.0/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-SpriteEditor.app/Contents/MacOS/SpriteEditor: ui_view.h $(OBJECTS)  
+SpriteEditor.app/Contents/MacOS/SpriteEditor: ui_canvas.h ui_view.h $(OBJECTS)  
 	@test -d SpriteEditor.app/Contents/MacOS/ || mkdir -p SpriteEditor.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -474,6 +481,7 @@ Makefile: ../../SpriteEditor.pro ../../../6.8.0/macos/mkspecs/features/spec_pre.
 		../../../6.8.0/macos/mkspecs/features/qt_config.prf \
 		../../../6.8.0/macos/mkspecs/macx-clang/qmake.conf \
 		../../../6.8.0/macos/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../6.8.0/macos/mkspecs/features/exclusive_builds.prf \
 		../../../6.8.0/macos/mkspecs/features/mac/sdk.prf \
 		../../../6.8.0/macos/mkspecs/features/toolchain.prf \
@@ -689,6 +697,7 @@ Makefile: ../../SpriteEditor.pro ../../../6.8.0/macos/mkspecs/features/spec_pre.
 ../../../6.8.0/macos/mkspecs/features/qt_config.prf:
 ../../../6.8.0/macos/mkspecs/macx-clang/qmake.conf:
 ../../../6.8.0/macos/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../6.8.0/macos/mkspecs/features/exclusive_builds.prf:
 ../../../6.8.0/macos/mkspecs/features/mac/sdk.prf:
 ../../../6.8.0/macos/mkspecs/features/toolchain.prf:
@@ -746,9 +755,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../view.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../main.cpp ../../view.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../view.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../../canvas.h ../../view.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../canvas.cpp ../../main.cpp ../../view.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../canvas.ui ../../view.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -758,6 +767,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r SpriteEditor.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -776,9 +786,19 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_view.cpp
+compiler_moc_header_make_all: moc_canvas.cpp moc_view.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_view.cpp
+	-$(DEL_FILE) moc_canvas.cpp moc_view.cpp
+moc_canvas.cpp: ../../canvas.h \
+		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/QPainter \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/qpainter.h \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/QImage \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/qimage.h \
+		../../../6.8.0/macos/libexec/moc
+	/Users/samueldutson/QT/6.8.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/samueldutson/QT/6.8.0/macos/mkspecs/macx-clang -I/Users/samueldutson/QT/SpriteEditor -I/Users/samueldutson/QT/6.8.0/macos/lib/QtWidgets.framework/Headers -I/Users/samueldutson/QT/6.8.0/macos/lib/QtGui.framework/Headers -I/Users/samueldutson/QT/6.8.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/samueldutson/QT/6.8.0/macos/lib ../../canvas.h -o moc_canvas.cpp
+
 moc_view.cpp: ../../view.h \
 		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -789,11 +809,22 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_view.h
+compiler_uic_make_all: ui_canvas.h ui_view.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_view.h
-ui_view.h: ../../view.ui \
+	-$(DEL_FILE) ui_canvas.h ui_view.h
+ui_canvas.h: ../../canvas.ui \
 		../../../6.8.0/macos/libexec/uic
+	/Users/samueldutson/QT/6.8.0/macos/libexec/uic ../../canvas.ui -o ui_canvas.h
+
+ui_view.h: ../../view.ui \
+		../../../6.8.0/macos/libexec/uic \
+		../../canvas.h \
+		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/QPainter \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/qpainter.h \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/QImage \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/qimage.h
 	/Users/samueldutson/QT/6.8.0/macos/libexec/uic ../../view.ui -o ui_view.h
 
 compiler_rez_source_make_all:
@@ -808,6 +839,16 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
+canvas.o: ../../canvas.cpp ../../canvas.h \
+		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/QPainter \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/qpainter.h \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/QImage \
+		../../../6.8.0/macos/lib/QtGui.framework/Headers/qimage.h \
+		ui_canvas.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o canvas.o ../../canvas.cpp
+
 main.o: ../../main.cpp ../../view.h \
 		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -820,6 +861,9 @@ view.o: ../../view.cpp ../../view.h \
 		../../../6.8.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		ui_view.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o view.o ../../view.cpp
+
+moc_canvas.o: moc_canvas.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_canvas.o moc_canvas.cpp
 
 moc_view.o: moc_view.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_view.o moc_view.cpp

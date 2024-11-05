@@ -2,6 +2,7 @@
 #define CANVAS_H
 
 #include <QWidget>
+#include <QPainter>
 #include <QImage>
 
 namespace Ui {
@@ -26,6 +27,8 @@ private:
     Ui::Canvas *ui;
 
     void openImage();
+
+    void paintEvent(QPaintEvent *event) override;
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

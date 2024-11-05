@@ -20,6 +20,7 @@
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
+#include "canvas.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -30,7 +31,7 @@ public:
     QPushButton *saveButton;
     QPushButton *loadButton;
     QLabel *spriteName;
-    QWidget *canvas;
+    Canvas *canvas;
     QWidget *animationBox;
     QScrollArea *frames;
     QWidget *scrollAreaWidgetContents;
@@ -62,7 +63,7 @@ public:
         spriteName = new QLabel(centralwidget);
         spriteName->setObjectName("spriteName");
         spriteName->setGeometry(QRect(330, 20, 60, 20));
-        canvas = new QWidget(centralwidget);
+        canvas = new Canvas(centralwidget);
         canvas->setObjectName("canvas");
         canvas->setGeometry(QRect(190, 50, 350, 350));
         animationBox = new QWidget(centralwidget);

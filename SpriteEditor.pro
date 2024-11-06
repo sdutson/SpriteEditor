@@ -11,10 +11,12 @@ CONFIG += c++17
 SOURCES += \
     canvas.cpp \
     main.cpp \
+    model.cpp \
     view.cpp
 
 HEADERS += \
     canvas.h \
+    model.h \
     view.h
 
 FORMS += \

@@ -1,0 +1,4 @@
+#ifndef ANIMATIONBOX_H
+#define ANIMATIONBOX_H
+
+#endif // ANIMATIONBOX_H

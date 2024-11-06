@@ -12,11 +12,13 @@ SOURCES += \
     AnimationBox.cpp \
     canvas.cpp \
     main.cpp \
+    model.cpp \
     view.cpp
 
 HEADERS += \
     AnimationBox.h \
     canvas.h \
+    model.h \
     view.h
 
 FORMS += \

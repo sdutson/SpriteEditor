@@ -63,16 +63,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="AnimationBox" name="animationBox" native="true">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>10</y>
-      <width>125</width>
-      <height>125</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QScrollArea" name="frames">
     <property name="geometry">
      <rect>
@@ -210,6 +200,16 @@
      <string>Color Selector</string>
     </property>
    </widget>
+   <widget class="AnimationBox" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>20</y>
+      <width>161</width>
+      <height>111</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -217,7 +217,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>

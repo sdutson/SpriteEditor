@@ -6,11 +6,16 @@
 #include <QImage>
 #include <QString>
 
-class Model : public QObject
+    class Model : public QObject
 {
+    Q_OBJECT
+
+private:
+    // Sprite& sprite;
+
+    const int COMPUTER_TURN_LENGTH = 1000; // Constant used to ensure computer moves speed up at game progresses.
 
 public:
-    Q_OBJECT
 
     // int fps; // TODO: Should this be moved to the animmationBox?
 
@@ -25,10 +30,6 @@ public:
     // void drawPixel(QImage& imageToUpdate, int x, int y);
 
     // void erasePixel(QImage& imageToUpdate, int x, int y);
-
-private:
-    // Sprite& sprite;
-
 
 };
 

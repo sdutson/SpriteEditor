@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     AnimationBox.cpp \
+    Sprite.cpp \
     canvas.cpp \
     main.cpp \
     model.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     AnimationBox.h \
+    Sprite.h \
     canvas.h \
     model.h \
     view.h

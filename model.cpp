@@ -1,3 +1,3 @@
 #include "model.h"
 
-Model::Model() {}
+Model::Model(QObject *parent) : QObject(parent) {}

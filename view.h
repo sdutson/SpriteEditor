@@ -15,7 +15,7 @@ class View : public QMainWindow
     Q_OBJECT
 
 public:
-    View(Model& model, QWidget *parent = nullptr, );
+    View(Model& model, QWidget *parent = nullptr);
     ~View();
 
 private:

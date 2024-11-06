@@ -14,11 +14,6 @@ class AnimationBox : public QWidget
 {
     Q_OBJECT
 
-    QImage image; // TODO: Set this back to referance.
-
-
-    bool scribbling;
-
 public:
 
     explicit AnimationBox(QWidget *parent = nullptr);

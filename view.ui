@@ -63,7 +63,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="animationBox" native="true">
+   <widget class="AnimationBox" name="animationBox" native="true">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -217,7 +217,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>36</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>
@@ -228,6 +228,12 @@
    <class>Canvas</class>
    <extends>QWidget</extends>
    <header>canvas.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AnimationBox</class>
+   <extends>QWidget</extends>
+   <header>animationbox.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

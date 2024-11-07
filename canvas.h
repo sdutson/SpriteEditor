@@ -14,10 +14,7 @@ class Canvas : public QWidget
 {
     Q_OBJECT
 
-    QImage image; // TODO: Set this back to referance.
-
-
-    bool scribbling;
+    QImage image;
 
 public:
     explicit Canvas(QWidget *parent = nullptr);
@@ -29,16 +26,14 @@ public:
 private:
     Ui::Canvas *ui;
 
-    void openImage();
-
     void paintEvent(QPaintEvent *event) override;
 
-// protected:
-//     void mousePressEvent(QMouseEvent *event) override;
+ protected:
+    void mousePressEvent(QMouseEvent *event) override;
 
-//     void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
 
-//     void mouseReleaseEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
 #endif // CANVAS_H

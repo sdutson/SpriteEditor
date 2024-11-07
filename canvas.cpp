@@ -2,13 +2,16 @@
 #include "ui_canvas.h"
 #include <QImage>
 #include <QSize>
+#include <QMouseEvent>
+#include <QDebug>
 
 Canvas::Canvas(QWidget *parent)
     : QWidget(parent)
+    , image(16, 16, QImage::Format_ARGB32)
     , ui(new Ui::Canvas)
-    , image("/Users/samueldutson/QT/SpriteEditor/me.png")
 {
     ui->setupUi(this);
+    image.fill(Qt::white);
 }
 
 Canvas::~Canvas()
@@ -18,28 +21,38 @@ Canvas::~Canvas()
 
 void Canvas::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
-    QImage scaledImage = image.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QImage scaledImage = image.scaled(size(), Qt::KeepAspectRatio);
     painter.drawImage(0, 0, scaledImage);
 }
 
-// void ScribbleArea::mousePressEvent(QMouseEvent *event)
-// {
-//     if (event->button() == Qt::LeftButton) {
-//         lastPoint = event->position().toPoint();
-//         scribbling = true;
-//     }
-// }
+void Canvas::switchImage(QImage &newImage)
+{
+    image = newImage;
+}
 
-// void ScribbleArea::mouseMoveEvent(QMouseEvent *event)
-// {
-//     if ((event->buttons() & Qt::LeftButton) && scribbling)
-//         drawLineTo(event->position().toPoint());
-// }
+ void Canvas::mousePressEvent(QMouseEvent *event)
+ {
+     if (event->button() == Qt::LeftButton)
+     {
+         image.setPixelColor(event->pos().x()/(size().width()/16), event->pos().y()/(size().height()/16), Qt::black);
+         update();
+     }
+ }
 
-// void ScribbleArea::mouseReleaseEvent(QMouseEvent *event)
-// {
-//     if (event->button() == Qt::LeftButton && scribbling) {
-//         drawLineTo(event->position().toPoint());
-//         scribbling = false;
-//     }
-// }
+ void Canvas::mouseMoveEvent(QMouseEvent *event)
+     {
+     if (event->buttons() & Qt::LeftButton)
+     {
+        image.setPixelColor(event->pos().x()/(size().width()/16), event->pos().y()/(size().height()/16), Qt::black);
+        update();
+     }
+
+ }
+
+ void Canvas::mouseReleaseEvent(QMouseEvent *event)
+ {
+     if (event->button() == Qt::LeftButton)
+     {
+         // qDebug() << "mouse released";
+     }
+ }

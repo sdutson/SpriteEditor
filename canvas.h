@@ -14,9 +14,11 @@ class Canvas : public QWidget
 {
     Q_OBJECT
 
-    QImage image;
 
 public:
+
+    QImage* image;
+
     explicit Canvas(QWidget *parent = nullptr);
 
     ~Canvas();

@@ -7,11 +7,9 @@
 
 Canvas::Canvas(QWidget *parent)
     : QWidget(parent)
-    , image(16, 16, QImage::Format_ARGB32)
     , ui(new Ui::Canvas)
 {
     ui->setupUi(this);
-    image.fill(Qt::white);
 }
 
 Canvas::~Canvas()
@@ -21,13 +19,13 @@ Canvas::~Canvas()
 
 void Canvas::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
-    QImage scaledImage = image.scaled(size(), Qt::KeepAspectRatio);
+    QImage scaledImage = image->scaled(size(), Qt::KeepAspectRatio);
     painter.drawImage(0, 0, scaledImage);
 }
 
-void Canvas::switchImage(QImage &newImage)
+void Canvas::switchImage(QImage& newImage)
 {
-    image = newImage;
+    image = &newImage;
 }
 
  void Canvas::mousePressEvent(QMouseEvent *event)
@@ -35,7 +33,7 @@ void Canvas::switchImage(QImage &newImage)
      if (event->button() == Qt::LeftButton)
      {
          // TODO: Add a chack to out out range coordinates.
-         image.setPixelColor(event->pos().x()/(size().width()/16), event->pos().y()/(size().height()/16), Qt::black);
+         image->setPixelColor(event->pos().x()/(size().width()/16), event->pos().y()/(size().height()/16), Qt::black);
          update();
      }
  }
@@ -44,7 +42,7 @@ void Canvas::switchImage(QImage &newImage)
      {
      if (event->buttons() & Qt::LeftButton)
      {
-        image.setPixelColor(event->pos().x()/(size().width()/16), event->pos().y()/(size().height()/16), Qt::black);
+        image->setPixelColor(event->pos().x()/(size().width()/16), event->pos().y()/(size().height()/16), Qt::black);
         update();
      }
 

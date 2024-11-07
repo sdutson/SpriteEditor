@@ -19,7 +19,8 @@ public:
 
     // int fps; // TODO: Should this be moved to the animmationBox?
 
-    QColor penColor;
+    QColor penColor = Qt::black;
+    bool erasing = false; //TODO: change to enum
 
     explicit Model(QObject *parent = nullptr);
 
@@ -27,13 +28,12 @@ public:
 
     // void saveJSON(QString destinaton);
 
-    void drawPixel(QImage& imageToUpdate, int x, int y);
-
-    void erasePixel(QImage& imageToUpdate, int x, int y);
-
     QImage& getFrame(int index);
 
     void addFrame();
+
+public slots:
+    void changePixel(QImage& imageToUpdate, int x, int y);
 
 };
 

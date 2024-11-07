@@ -33,8 +33,10 @@ void Canvas::switchImage(QImage& newImage)
      if (event->button() == Qt::LeftButton)
      {
          // TODO: Add a chack to out out range coordinates.
-         image->setPixelColor(event->pos().x()/(size().width()/image->width()), event->pos().y()/(size().height()/image->height()), Qt::black);
-         update();
+        int x = event->pos().x()/(size().width()/image->width());
+        int y = event->pos().y()/(size().height()/image->height());
+        emit changePixel(*image, x, y);
+        update();
      }
  }
 
@@ -42,8 +44,10 @@ void Canvas::switchImage(QImage& newImage)
      {
      if (event->buttons() & Qt::LeftButton)
      {
-             image->setPixelColor(event->pos().x()/(size().width()/image->width()), event->pos().y()/(size().height()/image->height()), Qt::black);
-        update();
+         int x = event->pos().x()/(size().width()/image->width());
+         int y = event->pos().y()/(size().height()/image->height());
+         emit changePixel(*image, x, y);
+         update();
      }
 
  }

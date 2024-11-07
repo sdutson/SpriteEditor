@@ -31,6 +31,10 @@ public:
 
     void erasePixel(QImage& imageToUpdate, int x, int y);
 
+    QImage& getFrame(int index);
+
+    void addFrame();
+
 };
 
 #endif // MODEL_H

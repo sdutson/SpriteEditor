@@ -3,7 +3,6 @@
 
 #include <QString>
 #include <QImage>
-#include <vector>
 
 using std::vector;
 
@@ -17,10 +16,12 @@ public:
 
     void deleteFrame(QImage &frame);
 
+    QImage& getFrame(int index);
+
     QString name;
 private:
 
-    int dimensions;
+    int dimensions = {16}; // TODO: Change this to whatever we want our default dimensions to be. Note. This will have to be able to be changed later on.
 
     vector<QImage> frames;
 

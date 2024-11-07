@@ -17,3 +17,13 @@ void Model::erasePixel(QImage& imageToUpdate, int x, int y)
 {
 
 }
+
+void Model::addFrame()
+{
+    sprite.addFrame();
+}
+
+QImage& Model::getFrame(int index)
+{
+    return sprite.getFrame(index);
+}

@@ -56,6 +56,12 @@ public:
     ///
     QPair<int, int> getDimensions();
 
+    ///
+    /// \brief getSize - Returns the number of frames in the sprite.
+    ///
+    int getSize();
+
+
 private:
 
     ///
@@ -66,6 +72,8 @@ private:
     vector<QImage> frames;
 
     QString name;
+
+    int size = {0}; // The number of frames in the sprite.
 
 };
 

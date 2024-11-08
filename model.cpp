@@ -34,3 +34,9 @@ QImage& Model::deleteFrame()
 {
     return sprite.deleteFrame();
 }
+
+int Model::getSize()
+{
+    return sprite.getSize();
+}
+

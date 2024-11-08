@@ -14,12 +14,9 @@
 private:
     Sprite sprite;
 
-
 public:
 
     // int fps; // TODO: Should this be moved to the animmationBox?
-
-    int size = {0}; // The number of frames in the model's sprite.
 
     QColor penColor = {Qt::black};
 
@@ -44,6 +41,12 @@ public:
     /// \return - The new last frame in the sprite(post deletion).
     ///
     QImage& deleteFrame();
+
+    ///
+    /// \brief getSize - Returns the number of frames in the model's sprite.
+    ///
+    int getSize();
+
 
 public slots:
     void changePixel(QImage& imageToUpdate, int x, int y);

@@ -33,3 +33,8 @@ void Sprite::setName(const string& newName)
 {
     this->name = QString::fromStdString(newName); // TODO: How to change this?
 }
+
+int Sprite::getSize()
+{
+    return frames.size();
+}

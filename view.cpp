@@ -28,6 +28,6 @@ void View::addFrame()
 
 void View::deleteFrame()
 {
+    if(model.getSize() <= 1) return;
     ui->canvas->switchImage(model.deleteFrame());
-    // TODO: Add check to ensure deleteForm isn't called on an empty sprite.
 }

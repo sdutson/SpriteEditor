@@ -86,19 +86,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="addFrameButton">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>450</y>
-      <width>60</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add</string>
-    </property>
-   </widget>
    <widget class="QSlider" name="fpsSlider">
     <property name="geometry">
      <rect>
@@ -200,22 +187,40 @@
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>560</x>
       <y>450</y>
-      <width>151</width>
-      <height>33</height>
+      <width>222</width>
+      <height>78</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="deleteFrameButton">
-       <property name="text">
-        <string>Delete Frame:</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="addFrameButton">
+         <property name="text">
+          <string>Add Frame At Index:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinBox"/>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="QSpinBox" name="deleteIndex"/>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="deleteFrameButton">
+         <property name="text">
+          <string>Delete Frame At Index:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="deleteIndex"/>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>

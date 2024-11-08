@@ -9,13 +9,14 @@ Sprite::Sprite()
     vector<QImage> frames;
 }
 
-QImage& Sprite::addFrame()
+QImage& Sprite::addFrame(int index)
 {
     QImage emptyImage(dimensions.first, dimensions.second, QImage::Format_ARGB32);
     // emptyImage.fill(Qt::transparent); TODO: Default should be transperant. Uncomment this before submission.
     emptyImage.fill(Qt::white);
-    frames.push_back(emptyImage);
-    return frames.back();
+
+    frames.insert(frames.begin() + index, emptyImage);
+    return frames[index];
 }
 
 QImage& Sprite::deleteFrame(int index)

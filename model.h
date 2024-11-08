@@ -31,10 +31,10 @@ public:
     QImage& getFrame(int index);
 
     ///
-    /// \brief addFrame - Adds a frame to the model.
+    /// \brief addFrame - Adds a frame to the model at the desired index.
     /// \return - A referance to the image that was added.
     ///
-    QImage& addFrame();
+    QImage& addFrame(int index);
 
     ///
     /// \brief deleteFrame - Deletes the frame at the current index from the sprite.

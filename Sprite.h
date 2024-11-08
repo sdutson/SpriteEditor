@@ -14,10 +14,10 @@ public:
     Sprite();
 
     ///
-    /// \brief addFrame - adds an empty frame to the sprite.
+    /// \brief addFrame - Adds an empty image at the desired index.
     /// \return - A referance to the image that was added.
     ///
-    QImage& addFrame();
+    QImage& addFrame(int index);
 
     ///
     /// \brief deleteFrame - Deletes the frame at the given index.

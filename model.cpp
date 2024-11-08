@@ -20,9 +20,9 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
     }
 }
 
-QImage& Model::addFrame()
+QImage& Model::addFrame(int index)
 {
-    return sprite.addFrame();
+    return sprite.addFrame(index);
 }
 
 QImage& Model::getFrame(int index)

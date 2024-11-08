@@ -23,7 +23,12 @@ View::~View()
 
 void View::addFrame()
 {
-    ui->canvas->switchImage(model.addFrame());
+    int index = ui->spinBox->value();
+    if(index > model.getSize())
+    {
+        index = model.getSize();
+    }
+    ui->canvas->switchImage(model.addFrame(index));
 }
 
 void View::deleteFrame()
@@ -32,10 +37,10 @@ void View::deleteFrame()
     {
         return;
     }
-    int frameNum = ui->deleteIndex->value();
-    if(frameNum >= model.getSize())
+    int index = ui->deleteIndex->value();
+    if(index > model.getSize() - 1)
     {
-        frameNum = model.getSize();
+        index = model.getSize() - 1;
     }
-    ui->canvas->switchImage(model.deleteFrame(frameNum - 1));
+    ui->canvas->switchImage(model.deleteFrame(index));
 }

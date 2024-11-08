@@ -58,6 +58,15 @@ void View::deleteFrame()
 
 void View::updateScrollView()
 {
+    // Clear the existing widgets in the layout
+    QLayoutItem *label;
+    while ((label = layout.takeAt(0)) != nullptr) {
+        delete label->widget();
+        delete label;
+    }
+
+    qDebug() << "Number of frames: " << model.getSize();
+
     // TODO: Try to find a way to not have to rebuilt this every time.
     for(int index = 0; index < model.getSize(); index++)
     {

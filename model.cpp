@@ -18,17 +18,19 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
     {
         imageToUpdate.setPixelColor(x, y, penColor);
     }
-    emit imageUpdated();
+    emit spriteUpdated();
 }
 
 QImage& Model::addFrame(int index)
 {
     return sprite.addFrame(index);
+    emit spriteUpdated();
 }
 
 QImage& Model::getFrame(int index)
 {
     return sprite.getFrame(index);
+    emit spriteUpdated();
 }
 
 QImage& Model::deleteFrame(int index)

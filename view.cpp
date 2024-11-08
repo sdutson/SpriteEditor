@@ -23,7 +23,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->canvas, &Canvas::changePixel, &model, &Model::changePixel);
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::addFrame);
     connect(ui->deleteFrameButton, &QPushButton::clicked, this, &View::deleteFrame);
-    connect(&model, &Model::imageUpdated, this, &View::updateScrollView);
+    connect(&model, &Model::spriteUpdated, this, &View::updateScrollView);
 }
 
 View::~View()
@@ -72,6 +72,5 @@ void View::updateScrollView()
 
         layout.addWidget(imageLabel);
     }
-
-
+    layout.update();
 }

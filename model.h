@@ -52,7 +52,7 @@ public slots:
     void changePixel(QImage& imageToUpdate, int x, int y);
 
 signals:
-    void imageUpdated();
+    void spriteUpdated();
 };
 
 #endif // MODEL_H

@@ -1,10 +1,11 @@
 #include "view.h"
 #include "ui_view.h"
 #include "model.h"
-
-
 #include <QLabel>
 #include <QImage>
+
+#include <QString>
+
 
 
 View::View(Model& model, QWidget *parent)
@@ -24,6 +25,8 @@ View::View(Model& model, QWidget *parent)
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::addFrame);
     connect(ui->deleteFrameButton, &QPushButton::clicked, this, &View::deleteFrame);
     connect(&model, &Model::spriteUpdated, this, &View::updateScrollView);
+    connect(ui->saveButton, &QPushButton::clicked, this, &View::showSaveFileDialog);
+    connect(ui->loadButton, &QPushButton::clicked, this, &View::showLoadFileDialog);
 }
 
 View::~View()
@@ -65,8 +68,6 @@ void View::updateScrollView()
         delete label;
     }
 
-    qDebug() << "Number of frames: " << model.getSize();
-
     // TODO: Try to find a way to not have to rebuilt this every time.
     for(int index = 0; index < model.getSize(); index++)
     {
@@ -82,4 +83,14 @@ void View::updateScrollView()
         layout.addWidget(imageLabel);
     }
     layout.update();
+}
+
+void View::showSaveFileDialog()
+{
+    QString filePath = QFileDialog::getSaveFileName(this, tr("save file"), "/Users/samueldutson",  tr("JSON files(*.json)"));
+}
+
+void View::showLoadFileDialog()
+{
+    QString filePath = QFileDialog::getOpenFileName(this, tr("open file"), "/Users/samueldutson", tr("JSON files(*.json"));
 }

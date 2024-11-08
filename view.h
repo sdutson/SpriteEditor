@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include "model.h"
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -46,5 +47,15 @@ private slots:
     /// \brief updateScrollView - Updates the contents of the scroll view.
     ///
     void updateScrollView();
+
+    ///
+    /// \brief showSaveFileDialog - Displays a file dialog to get the desired save location from the user.
+    ///
+    void showSaveFileDialog();
+
+    ///
+    /// \brief showLoadFileDialog - Displays a file dialog to get the desired load location from the user.
+    ///
+    void showLoadFileDialog();
 };
 #endif // VIEW_H

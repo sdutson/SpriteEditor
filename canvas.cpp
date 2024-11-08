@@ -26,6 +26,7 @@ void Canvas::paintEvent(QPaintEvent* event) {
 void Canvas::switchImage(QImage& newImage)
 {
     image = &newImage;
+    update();
 }
 
  void Canvas::mousePressEvent(QMouseEvent *event)

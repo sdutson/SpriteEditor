@@ -20,12 +20,17 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
     }
 }
 
-void Model::addFrame()
+QImage& Model::addFrame()
 {
-    sprite.addFrame();
+    return sprite.addFrame();
 }
 
 QImage& Model::getFrame(int index)
 {
     return sprite.getFrame(index);
+}
+
+QImage& Model::deleteFrame()
+{
+    return sprite.deleteFrame();
 }

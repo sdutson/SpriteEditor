@@ -15,14 +15,15 @@ public:
 
     ///
     /// \brief addFrame - adds an empty frame to the sprite.
+    /// \return - A referance to the image that was added.
     ///
-    void addFrame();
+    QImage& addFrame();
 
     ///
-    /// \brief deleteFrame - deletes frame at index from sprite.
-    /// \param index - index of frame to delete.
+    /// \brief deleteFrame - Deletes the last frame in the sprite.
+    /// \return - The new last frame in the sprite(Post deletion).
     ///
-    void deleteFrame(int index);
+    QImage& deleteFrame(); // TODO: Add a index parameter here after basic deletion has been implemented.
 
     ///
     /// \brief getFrame - gets the frame at index.

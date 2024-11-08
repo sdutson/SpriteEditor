@@ -19,7 +19,10 @@ public:
 
     // int fps; // TODO: Should this be moved to the animmationBox?
 
-    QColor penColor = Qt::black;
+    int size = {0}; // The number of frames in the model's sprite.
+
+    QColor penColor = {Qt::black};
+
     bool erasing = false; //TODO: change to enum
 
     explicit Model(QObject *parent = nullptr);
@@ -30,7 +33,17 @@ public:
 
     QImage& getFrame(int index);
 
-    void addFrame();
+    ///
+    /// \brief addFrame - Adds a frame to the model.
+    /// \return - A referance to the image that was added.
+    ///
+    QImage& addFrame();
+
+    ///
+    /// \brief deleteFrame - Deletes the last frame from the sprite.
+    /// \return - The new last frame in the sprite(post deletion).
+    ///
+    QImage& deleteFrame();
 
 public slots:
     void changePixel(QImage& imageToUpdate, int x, int y);

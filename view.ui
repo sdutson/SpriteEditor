@@ -66,23 +66,38 @@
    <widget class="QScrollArea" name="frames">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>200</y>
-      <width>125</width>
+      <x>584</x>
+      <y>180</y>
+      <width>151</width>
       <height>250</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
     <widget class="QWidget" name="scrollAreaWidgetContents">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>24</x>
        <y>0</y>
-       <width>123</width>
+       <width>100</width>
        <height>248</height>
       </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
      </property>
     </widget>
    </widget>
@@ -184,7 +199,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>560</x>

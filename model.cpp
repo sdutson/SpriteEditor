@@ -18,6 +18,7 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
     {
         imageToUpdate.setPixelColor(x, y, penColor);
     }
+    emit imageUpdated();
 }
 
 QImage& Model::addFrame(int index)

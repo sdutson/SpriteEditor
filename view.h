@@ -25,6 +25,7 @@ private:
     QWidget *imageContainer;
     QVBoxLayout *scrollViewLayout;
     Model& model;
+    QVBoxLayout layout;
 
 private slots:
     ///
@@ -39,5 +40,11 @@ private slots:
     /// This slot deletes the last frame from the sprite. The canvas is then updated appropriatly.
     ///
     void deleteFrame();
+
+
+    ///
+    /// \brief updateScrollView - Updates the contents of the scroll view.
+    ///
+    void updateScrollView();
 };
 #endif // VIEW_H

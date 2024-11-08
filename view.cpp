@@ -11,14 +11,13 @@ View::View(Model& model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
     , model(model)
-    , layout(QVBoxLayout(ui->scrollAreaWidgetContents))
 {
     ui->setupUi(this);
     addFrame();
 
     // Set up scroll view.
     ui->frames->setWidgetResizable(true);
-    QVBoxLayout *layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
+    QVBoxLayout layout(ui->scrollAreaWidgetContents);
     updateScrollView();
 
     connect(ui->canvas, &Canvas::changePixel, &model, &Model::changePixel);

@@ -1,5 +1,6 @@
 #include "Sprite.h"
 #include <QImage>
+#include <QString>
 
 using std::vector;
 
@@ -26,7 +27,7 @@ QImage& Sprite::getFrame(int index)
     return frames.at(index);
 }
 
-void Sprite::setName(const string& name)
+void Sprite::setName(const string& newName)
 {
-
+    this->name = QString::fromStdString(newName); // TODO: How to change this?
 }

@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QImage>
+#include <QJsonObject>
 
 using std::vector;
 using std::string;
@@ -61,6 +62,19 @@ public:
     /// \brief getSize - Returns the number of frames in the sprite.
     ///
     int getSize();
+
+    ///
+    /// \brief saveJSON - Serializes 'this' into a QJsonObject.
+    /// \return - A QJsonObject holding all needed data to reproduce 'this' sprite.
+    ///
+    QJsonObject saveJSON();
+
+    ///
+    /// \brief loadFromJSON - Creates a sprite from the given QJsonObject. If the given ojbect is invalid, method returns a nullptr.
+    /// \return - A sprite object constructed from spriteJson.
+    /// \param spriteJson - The object to be deserialized.
+    ///
+    static Sprite loadFromJSON(QJsonObject spriteJson);
 
 
 private:

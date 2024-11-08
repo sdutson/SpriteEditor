@@ -1,6 +1,7 @@
 #include "Sprite.h"
 #include <QImage>
 #include <QString>
+#include <QJsonObject>
 
 using std::vector;
 
@@ -42,4 +43,15 @@ void Sprite::setName(const string& newName)
 int Sprite::getSize()
 {
     return frames.size();
+}
+
+QJsonObject Sprite::saveJSON()
+{
+    QJsonObject spriteJson;
+    // TODO: Need to save frames, dimensions, and name.
+}
+
+Sprite Sprite::loadFromJSON(QJsonObject spriteJson)
+{
+    // TODO: Load frames, dimensions, and name from the file. Build a sprite object and return.
 }

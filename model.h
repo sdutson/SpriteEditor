@@ -47,6 +47,19 @@ public:
     ///
     int getSize();
 
+    ///
+    /// \brief saveSprite - Saves a serialized version of 'sprite' to the json file located at 'filepath'.
+    /// \param filepath - The location to save to.
+    ///
+    void saveSprite(QString filepath);
+
+    ///
+    /// \brief loadSprite - Loads the .json file located at 'filepath' and has a new Sprite object created.
+    /// Informs view up 'reset' state.
+    /// \param filepath - The location to load from.
+    ///
+    void loadSprite(QString filepath);
+
 
 public slots:
     void changePixel(QImage& imageToUpdate, int x, int y);

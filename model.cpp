@@ -2,6 +2,8 @@
 #include "Sprite.h"
 #include <QImage>
 #include <QColor>
+#include <QString>
+
 
 Model::Model(QObject *parent) : QObject(parent)
 {
@@ -43,3 +45,16 @@ int Model::getSize()
     return sprite.getSize();
 }
 
+void Model::saveSprite(QString filepath)
+{
+    // TODO: Get the needed QJsonObject from the Sprite and write it to filepath.
+}
+
+void Model::loadSprite(QString filepath)
+{
+    // TODO: Load in the QJsonObject(If inproperly formatted, simply return.)
+    // TODO: call loadFromJson() and reassign the output to 'sprite'. (If null don't reassign and simply return.)
+    // TODO: Inform the view it needs to updated and DELETE all data from previous sprite.
+    // TODO: Should we warn the user if they are going to overwrite data?
+
+}

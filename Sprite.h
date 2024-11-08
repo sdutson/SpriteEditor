@@ -32,21 +32,33 @@ public:
     QImage& getFrame(int index);
 
     ///
-    /// \brief setName
-    /// \param name
+    /// \brief setName - sets the name of this sprite.
+    /// \param name - sprite name.
     ///
     void setName(const string& name);
 
     ///
-    /// \brief getName
-    /// \return
+    /// \brief getName - gets the name of this sprite.
+    /// \return - sprite name.
     ///
     string getName();
+
+    ///
+    /// \brief setDimensions
+    /// \param dimensions
+    ///
+    void setDimensions(QPair<int, int> dimensions);
+
+    ///
+    /// \brief getDimensions - the dimensions of this sprite
+    /// \return -
+    ///
+    QPair<int, int> getDimensions();
 
 private:
 
     ///
-    /// \brief dimensions
+    /// \brief dimensions -
     ///
     QPair<int, int> dimensions = {16, 16}; // TODO: Change this to whatever we want our default dimensions to be. Note. This will have to be able to be changed later on.
 

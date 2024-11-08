@@ -25,3 +25,8 @@ QImage& Sprite::getFrame(int index)
 {
     return frames.at(index);
 }
+
+void Sprite::setName(const string& name)
+{
+
+}

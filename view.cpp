@@ -28,6 +28,14 @@ void View::addFrame()
 
 void View::deleteFrame()
 {
-    if(model.getSize() <= 1) return;
-    ui->canvas->switchImage(model.deleteFrame());
+    if(model.getSize() <= 1)
+    {
+        return;
+    }
+    int index = ui->deleteIndex->value();
+    if(index >= model.getSize())
+    {
+        index = model.getSize() - 1;
+    }
+    ui->canvas->switchImage(model.deleteFrame(index));
 }

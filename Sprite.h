@@ -20,10 +20,11 @@ public:
     QImage& addFrame();
 
     ///
-    /// \brief deleteFrame - Deletes the last frame in the sprite.
-    /// \return - The new last frame in the sprite(Post deletion).
+    /// \brief deleteFrame - Deletes the frame at the given index.
+    /// \param index - Index of the frame to delete.
+    /// \return - The image to replace the deleted one.
     ///
-    QImage& deleteFrame(); // TODO: Add a index parameter here after basic deletion has been implemented.
+    QImage& deleteFrame(int index);
 
     ///
     /// \brief getFrame - gets the frame at index.

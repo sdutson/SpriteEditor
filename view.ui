@@ -89,7 +89,7 @@
    <widget class="QPushButton" name="addFrameButton">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>560</x>
       <y>450</y>
       <width>60</width>
       <height>30</height>
@@ -97,19 +97,6 @@
     </property>
     <property name="text">
      <string>Add</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="deleteFrameButton">
-    <property name="geometry">
-     <rect>
-      <x>665</x>
-      <y>450</y>
-      <width>60</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Delete</string>
     </property>
    </widget>
    <widget class="QSlider" name="fpsSlider">
@@ -210,6 +197,28 @@
      </rect>
     </property>
    </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>450</y>
+      <width>151</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="deleteFrameButton">
+       <property name="text">
+        <string>Delete Frame:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="deleteIndex"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -217,7 +226,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>

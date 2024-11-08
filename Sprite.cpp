@@ -18,10 +18,14 @@ QImage& Sprite::addFrame()
     return frames.back();
 }
 
-QImage& Sprite::deleteFrame()
+QImage& Sprite::deleteFrame(int index)
 {
-    frames.erase(frames.end() - 1);
-    return frames.back();
+    frames.erase(frames.begin() + index);
+    if(index == 0)
+    {
+        return frames[index];
+    }
+    return frames[index - 1];
 }
 
 QImage& Sprite::getFrame(int index)

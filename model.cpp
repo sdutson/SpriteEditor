@@ -30,9 +30,9 @@ QImage& Model::getFrame(int index)
     return sprite.getFrame(index);
 }
 
-QImage& Model::deleteFrame()
+QImage& Model::deleteFrame(int index)
 {
-    return sprite.deleteFrame();
+    return sprite.deleteFrame(index);
 }
 
 int Model::getSize()

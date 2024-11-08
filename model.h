@@ -37,10 +37,10 @@ public:
     QImage& addFrame();
 
     ///
-    /// \brief deleteFrame - Deletes the last frame from the sprite.
-    /// \return - The new last frame in the sprite(post deletion).
+    /// \brief deleteFrame - Deletes the frame at the current index from the sprite.
+    /// \return - The frame to replace the deleted one.
     ///
-    QImage& deleteFrame();
+    QImage& deleteFrame(int index);
 
     ///
     /// \brief getSize - Returns the number of frames in the model's sprite.

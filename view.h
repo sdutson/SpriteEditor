@@ -2,6 +2,8 @@
 #define VIEW_H
 
 #include <QMainWindow>
+#include <QWidget>
+#include <QVBoxLayout>
 #include "model.h"
 
 QT_BEGIN_NAMESPACE
@@ -20,5 +22,7 @@ public:
 
 private:
     Ui::View *ui;
+    QWidget *imageContainer;
+    QVBoxLayout *scrollViewLayout;
 };
 #endif // VIEW_H

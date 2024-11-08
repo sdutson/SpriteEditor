@@ -16,7 +16,7 @@ void Sprite::addFrame()
     frames.push_back(emptyImage);
 }
 
-void Sprite::deleteFrame(QImage &frame)
+void Sprite::deleteFrame(int index)
 {
 
 }
@@ -24,4 +24,9 @@ void Sprite::deleteFrame(QImage &frame)
 QImage& Sprite::getFrame(int index)
 {
     return frames.at(index);
+}
+
+void Sprite::setName(const string& name)
+{
+
 }

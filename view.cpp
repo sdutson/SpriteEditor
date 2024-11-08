@@ -10,6 +10,9 @@ View::View(Model& model, QWidget *parent)
     model.addFrame();
     ui->canvas->switchImage(model.getFrame(0));
     connect(ui->canvas, &Canvas::changePixel, &model, &Model::changePixel);
+
+
+
 }
 
 View::~View()

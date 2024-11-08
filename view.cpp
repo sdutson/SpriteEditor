@@ -32,10 +32,10 @@ void View::deleteFrame()
     {
         return;
     }
-    int index = ui->deleteIndex->value();
-    if(index >= model.getSize())
+    int frameNum = ui->deleteIndex->value();
+    if(frameNum >= model.getSize())
     {
-        index = model.getSize() - 1;
+        frameNum = model.getSize();
     }
-    ui->canvas->switchImage(model.deleteFrame(index));
+    ui->canvas->switchImage(model.deleteFrame(frameNum - 1));
 }

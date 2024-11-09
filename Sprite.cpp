@@ -16,8 +16,7 @@ Sprite::Sprite()
 QImage& Sprite::addFrame(int index)
 {
     QImage emptyImage(dimensions.first, dimensions.second, QImage::Format_ARGB32);
-    // emptyImage.fill(Qt::transparent); TODO: Default should be transperant. Uncomment this before submission.
-    emptyImage.fill(Qt::white);
+    emptyImage.fill(Qt::transparent);
 
     frames.insert(frames.begin() + index, emptyImage);
     return frames[index];

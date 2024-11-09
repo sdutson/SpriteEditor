@@ -20,6 +20,9 @@ Canvas::~Canvas()
 void Canvas::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
     QImage scaledImage = image->scaled(size(), Qt::KeepAspectRatio);
+    painter.setBrush(Qt::lightGray);
+    painter.setPen(Qt::NoPen);
+    painter.drawRect(0, 0, width(), height());
     painter.drawImage(0, 0, scaledImage);
 }
 

@@ -15,7 +15,7 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
 {
     if (erasing)
     {
-        imageToUpdate.setPixelColor(x, y, Qt::white);
+        imageToUpdate.setPixelColor(x, y, Qt::transparent);
     }
     else
     {

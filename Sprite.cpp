@@ -2,6 +2,9 @@
 #include <QImage>
 #include <QString>
 #include <QJsonObject>
+#include <QJsonArray>
+#include <QByteArray>
+#include <QBuffer>
 
 using std::vector;
 
@@ -48,10 +51,28 @@ int Sprite::getSize()
 QJsonObject Sprite::saveJSON()
 {
     QJsonObject spriteJson;
-    // TODO: Need to save frames, dimensions, and name.
+    spriteJson["name"] = this->name;
+    spriteJson["width"] = this->dimensions.first;
+    spriteJson["height"] = this->dimensions.second;
+
+    // Store the frames(Encoded 64 bit) to the json object.
+    QJsonArray jsonFrames;
+    for(const QImage& frame : this->frames)
+    {
+        QByteArray byteArray;
+        QBuffer buffer(&byteArray);
+        buffer.open(QIODevice::WriteOnly);
+        frame.save(&buffer, "PNG");  // TODO: Should we use a differnt format here?
+        QString convertedImage = QString::fromUtf8(byteArray.toBase64());
+
+        jsonFrames.append(convertedImage);
+    }
+    spriteJson["frames"] = jsonFrames;
+
+    return spriteJson;
 }
 
-Sprite Sprite::loadFromJSON(QJsonObject spriteJson)
+Sprite& Sprite::loadFromJSON(QJsonObject spriteJson)
 {
     // TODO: Load frames, dimensions, and name from the file. Build a sprite object and return.
 }

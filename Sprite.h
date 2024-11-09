@@ -56,7 +56,7 @@ public:
     /// \brief getDimensions - the dimensions of this sprite
     /// \return -
     ///
-    QPair<int, int> getDimensions();
+    QPair<int, int>& getDimensions();
 
     ///
     /// \brief getSize - Returns the number of frames in the sprite.
@@ -74,7 +74,7 @@ public:
     /// \return - A sprite object constructed from spriteJson.
     /// \param spriteJson - The object to be deserialized.
     ///
-    static Sprite loadFromJSON(QJsonObject spriteJson);
+    static Sprite& loadFromJSON(QJsonObject spriteJson);
 
 
 private:

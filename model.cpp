@@ -3,7 +3,8 @@
 #include <QImage>
 #include <QColor>
 #include <QString>
-
+#include <QFile>
+#include <QJsonDocument>
 
 Model::Model(QObject *parent) : QObject(parent)
 {
@@ -47,7 +48,10 @@ int Model::getSize()
 
 void Model::saveSprite(QString filepath)
 {
-    // TODO: Get the needed QJsonObject from the Sprite and write it to filepath.
+    QJsonDocument jsonDoc(sprite.saveJSON());
+    QFile jsonFile(filepath);
+    jsonFile.open(QFile::WriteOnly);
+    jsonFile.write(jsonDoc.toJson());
 }
 
 void Model::loadSprite(QString filepath)

@@ -3,7 +3,6 @@
 #include "model.h"
 #include <QLabel>
 #include <QImage>
-
 #include <QString>
 
 
@@ -42,6 +41,10 @@ void View::addFrame()
     {
         index = model.getSize();
     }
+    else if(index < 0)
+    {
+        index = 0;
+    }
     ui->canvas->switchImage(model.addFrame(index));
 }
 
@@ -55,6 +58,10 @@ void View::deleteFrame()
     if(index > model.getSize() - 1)
     {
         index = model.getSize() - 1;
+    }
+    else if(index < 0)
+    {
+        index = 0;
     }
     ui->canvas->switchImage(model.deleteFrame(index));
 }
@@ -88,6 +95,7 @@ void View::updateScrollView()
 void View::showSaveFileDialog()
 {
     QString filePath = QFileDialog::getSaveFileName(this, tr("save file"), "/Users/samueldutson",  tr("JSON files(*.json)"));
+    model.saveSprite(filePath);
 }
 
 void View::showLoadFileDialog()

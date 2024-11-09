@@ -94,7 +94,7 @@ void View::updateScrollView()
 
 void View::showSaveFileDialog()
 {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("save file"), "/Users/samueldutson",  tr("JSON files(*.json)"));
+    QString filePath = QFileDialog::getSaveFileName(this, tr("save file"), "/Users/samueldutson",  tr("JSON files(*.json)")); // TODO: Make sure this is enforced.
     model.saveSprite(filePath);
 }
 

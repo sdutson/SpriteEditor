@@ -63,6 +63,9 @@ public:
 
 public slots:
     void changePixel(QImage& imageToUpdate, int x, int y);
+    void setToolToPen();
+    void setToolToEraser();
+    void setColor(QColor color);
 
 signals:
     void spriteUpdated();

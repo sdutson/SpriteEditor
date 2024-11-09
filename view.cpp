@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QImage>
 #include <QString>
+#include <QDebug>
 
 
 
@@ -21,11 +22,15 @@ View::View(Model& model, QWidget *parent)
     updateScrollView();
 
     connect(ui->canvas, &Canvas::changePixel, &model, &Model::changePixel);
+    connect(ui->penButton, &QPushButton::clicked, &model, &Model::setToolToPen);
+    connect(ui->eraserButton, &QPushButton::clicked, &model, &Model::setToolToEraser);
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::addFrame);
     connect(ui->deleteFrameButton, &QPushButton::clicked, this, &View::deleteFrame);
     connect(&model, &Model::spriteUpdated, this, &View::updateScrollView);
     connect(ui->saveButton, &QPushButton::clicked, this, &View::showSaveFileDialog);
     connect(ui->loadButton, &QPushButton::clicked, this, &View::showLoadFileDialog);
+    connect(ui->colorSelector, &QPushButton::clicked, this, &View::showColorDialog);
+    connect(this, &View::setColor, &model, &Model::setColor);
 }
 
 View::~View()
@@ -101,4 +106,10 @@ void View::showSaveFileDialog()
 void View::showLoadFileDialog()
 {
     QString filePath = QFileDialog::getOpenFileName(this, tr("open file"), "/Users/samueldutson", tr("JSON files(*.json"));
+}
+
+void View::showColorDialog()
+{
+    QColor color = QColorDialog::getColor();
+    emit setColor(color);
 }

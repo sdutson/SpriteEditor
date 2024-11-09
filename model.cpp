@@ -24,6 +24,21 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
     emit spriteUpdated();
 }
 
+void Model::setToolToPen()
+{
+    erasing = false;
+}
+
+void Model::setToolToEraser()
+{
+    erasing = true;
+}
+
+void Model::setColor(QColor color)
+{
+    penColor = color;
+}
+
 QImage& Model::addFrame(int index)
 {
     return sprite.addFrame(index);

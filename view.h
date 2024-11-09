@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include "model.h"
 #include <QFileDialog>
+#include <QColorDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -57,5 +58,10 @@ private slots:
     /// \brief showLoadFileDialog - Displays a file dialog to get the desired load location from the user.
     ///
     void showLoadFileDialog();
+
+    void showColorDialog();
+
+signals:
+    void setColor(QColor color);
 };
 #endif // VIEW_H

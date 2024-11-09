@@ -18,6 +18,10 @@ Canvas::~Canvas()
 }
 
 void Canvas::paintEvent(QPaintEvent* event) {
+    if (firstPaint) {
+        drawTransparencyGrid();
+        firstPaint = false;
+    }
     QPainter painter(this);
     QImage scaledImage = image->scaled(size(), Qt::KeepAspectRatio);
     painter.setBrush(Qt::lightGray);
@@ -68,5 +72,26 @@ void Canvas::switchImage(QImage& newImage)
      if (event->button() == Qt::LeftButton)
      {
          // qDebug() << "mouse released";
+     }
+ }
+
+
+ void Canvas::drawTransparencyGrid()
+ {
+     QPainter painter(this);
+     painter.setPen(Qt::NoPen);
+
+     for (int x = 0; x < width(); x+=(size().width()/image->width()))
+     {
+         for (int y = 0; y < height(); y+=(size().height()/image->height()))
+         {
+             qDebug() << x << " " << y;
+             if ((x / (size().width() / image->width()) + y / (size().height() / image->height())) % 2 == 0)
+                 painter.setBrush(Qt::lightGray);
+             else
+                 painter.setBrush(Qt::white);
+
+             painter.drawRect(x, y, size().width()/image->width(), size().height()/image->height());
+         }
      }
  }

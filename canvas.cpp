@@ -39,8 +39,11 @@ void Canvas::switchImage(QImage& newImage)
          // TODO: Add a chack to out out range coordinates.
         int x = event->pos().x()/(size().width()/image->width());
         int y = event->pos().y()/(size().height()/image->height());
-        emit changePixel(*image, x, y);
-        update();
+        if (x > 0 && x < image->width() && y > 0 && y < image->height())
+        {
+            emit changePixel(*image, x, y);
+            update();
+        }
      }
  }
 
@@ -50,8 +53,12 @@ void Canvas::switchImage(QImage& newImage)
      {
          int x = event->pos().x()/(size().width()/image->width());
          int y = event->pos().y()/(size().height()/image->height());
-         emit changePixel(*image, x, y);
-         update();
+
+         if (x >= 0 && x < image->width() && y >= 0 && y < image->height())
+         {
+            emit changePixel(*image, x, y);
+            update();
+         }
      }
 
  }

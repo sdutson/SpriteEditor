@@ -3,3 +3,6 @@
 
 # Ignore .user file
 *.pro.user
+
+# Ignore .json file
+*.json

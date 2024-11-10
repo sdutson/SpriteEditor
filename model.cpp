@@ -9,7 +9,6 @@
 Model::Model(QObject *parent) : QObject(parent)
 {
     Sprite sprite;
-    fps = 1; // TODO: Temp hardcoded value, remove later.
 }
 
 void Model::changePixel(QImage& imageToUpdate, int x, int y)
@@ -23,7 +22,7 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
         imageToUpdate.setPixelColor(x, y, penColor);
     }
     emit spriteUpdated();
-    emit displayAnimation(sprite, fps);
+    emit displayAnimation(sprite);
 }
 
 void Model::setToolToPen()

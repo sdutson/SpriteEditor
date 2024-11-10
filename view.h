@@ -49,6 +49,8 @@ private slots:
     ///
     void updateScrollView();
 
+    void updateFPS();
+
     ///
     /// \brief showSaveFileDialog - Displays a file dialog to get the desired save location from the user.
     ///
@@ -62,6 +64,7 @@ private slots:
     void showColorDialog();
 
 signals:
+    void changeFPS(int newFps);
     void setColor(QColor color);
 };
 #endif // VIEW_H

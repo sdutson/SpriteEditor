@@ -20,6 +20,8 @@ public:
 
     ~AnimationBox();
 
+    int fps;
+
 private:
     Ui::AnimationBox *ui;
 
@@ -33,8 +35,8 @@ private:
 
 
 public slots:
-    void changeFPS();
-    void displayAnimation(Sprite& sprite, int frameRate);
+    void changeFPS(int newFps);
+    void displayAnimation(Sprite& sprite);
 };
 
 #endif // ANIMATIONBOX_H

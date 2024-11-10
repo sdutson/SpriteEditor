@@ -1,4 +1,5 @@
 #include "view.h"
+#include "ui_animationbox.h"
 #include "ui_view.h"
 #include "model.h"
 #include "animationbox.h"
@@ -35,6 +36,12 @@ View::View(Model& model, QWidget *parent)
     connect(this, &View::setColor, &model, &Model::setColor);
     connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
     connect(ui->fpsSlider, &QSlider::sliderMoved, ui->animationBox, &AnimationBox::changeFPS);
+
+    ui->fpsSlider->setTickPosition(QSlider::TicksBelow);
+    ui->fpsSlider->setTickInterval(5);
+    ui->fpsSlider->setMaximum(30);
+    ui->fpsSlider->setMinimum(0);
+
 }
 
 View::~View()
@@ -73,6 +80,12 @@ void View::deleteFrame()
         index = 0;
     }
     ui->canvas->switchImage(model.deleteFrame(index));
+}
+
+void View::updateFPS()
+{
+    int fpsInt = ui->fpsSlider->sliderPosition();
+    emit changeFPS(fpsInt);
 }
 
 void View::updateScrollView()

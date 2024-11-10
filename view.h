@@ -50,6 +50,11 @@ private slots:
     void updateScrollView();
 
     ///
+    /// \brief updateFPS - Updates the fps of the animation box when the user uses the slider.
+    ///
+    void updateFPS();
+
+    ///
     /// \brief showSaveFileDialog - Displays a file dialog to get the desired save location from the user.
     ///
     void showSaveFileDialog();
@@ -62,6 +67,9 @@ private slots:
     void showColorDialog();
 
 signals:
+    void changeFPS(int newFps);
     void setColor(QColor color);
+
 };
+
 #endif // VIEW_H

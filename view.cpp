@@ -1,4 +1,5 @@
 #include "view.h"
+#include "ui_animationbox.h"
 #include "ui_view.h"
 #include "model.h"
 #include "animationbox.h"
@@ -6,9 +7,6 @@
 #include <QImage>
 #include <QString>
 #include <QDebug>
-
-
-
 
 View::View(Model& model, QWidget *parent)
     : QMainWindow(parent)
@@ -34,7 +32,13 @@ View::View(Model& model, QWidget *parent)
     connect(ui->colorSelector, &QPushButton::clicked, this, &View::showColorDialog);
     connect(this, &View::setColor, &model, &Model::setColor);
     connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
-    connect(ui->fpsSlider, &QSlider::sliderMoved, ui->animationBox, &AnimationBox::changeFPS);
+    connect(ui->fpsSlider, &QSlider::valueChanged, ui->animationBox, &AnimationBox::changeFPS);
+
+    ui->fpsSlider->setTickPosition(QSlider::TicksBelow);
+    ui->fpsSlider->setTickInterval(1);
+    ui->fpsSlider->setMaximum(30);
+    ui->fpsSlider->setMinimum(0);
+    //TODO: Decide whether to add numbers to tick marks on slider.
 }
 
 View::~View()
@@ -73,6 +77,12 @@ void View::deleteFrame()
         index = 0;
     }
     ui->canvas->switchImage(model.deleteFrame(index));
+}
+
+void View::updateFPS()
+{
+    int fpsInt = ui->fpsSlider->value();
+    emit changeFPS(fpsInt);
 }
 
 void View::updateScrollView()

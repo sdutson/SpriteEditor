@@ -13,7 +13,8 @@ AnimationBox::AnimationBox(QWidget *parent)
     ui->setupUi(this);
 
     connect(frameTimer, &QTimer::timeout, this, QOverload<>::of(&AnimationBox::update));
-    std::cout << "In AnimationBox constructor" << std::endl; // TODO: Remove me
+
+    fps = 1; // Initiallize fps at 1.
 }
 
 AnimationBox::~AnimationBox()
@@ -21,13 +22,13 @@ AnimationBox::~AnimationBox()
     delete ui;
 }
 
-void AnimationBox::displayAnimation(Sprite& sprite, int frameRate)
+void AnimationBox::displayAnimation(Sprite& sprite)
 {
     this->sprite = &sprite;
     currentFrameIndex = 0;
 
     const double ONE_SECOND_IN_MILLISECONDS = 1'000.0; // Double literal to prevent truncation from integer division.
-    frameTimer->start(ONE_SECOND_IN_MILLISECONDS / frameRate);
+    frameTimer->start(ONE_SECOND_IN_MILLISECONDS / fps);
 }
 
 void AnimationBox::paintEvent(QPaintEvent *event)
@@ -60,7 +61,14 @@ void AnimationBox::paintEvent(QPaintEvent *event)
         currentFrameIndex++;
     }
 }
-void AnimationBox::changeFPS()
+
+void AnimationBox::changeFPS(int newFPS)
 {
-    std::cout << "Slider changed" << std::endl;
+    fps = newFPS;
+
+    // Update the animation fps if a sprite is loaded
+    if (sprite) {
+        displayAnimation(*sprite);
+    }
 }
+

@@ -9,7 +9,6 @@
 Model::Model(QObject *parent) : QObject(parent)
 {
     Sprite sprite;
-    fps = 1; // TODO: Temp hardcoded value, remove later.
 }
 
 void Model::changePixel(QImage& imageToUpdate, int x, int y)
@@ -23,7 +22,7 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
         imageToUpdate.setPixelColor(x, y, penColor);
     }
     emit spriteUpdated();
-    emit displayAnimation(sprite, fps);
+    emit displayAnimation(sprite);
 }
 
 void Model::setToolToPen()
@@ -77,7 +76,6 @@ void Model::loadSprite(QString filepath)
     // TODO: call loadFromJson() and reassign the output to 'sprite'. (If null don't reassign and simply return.)
     // TODO: Inform the view it needs to updated and DELETE all data from previous sprite.
     // TODO: Should we warn the user if they are going to overwrite data?
-
 }
 
 

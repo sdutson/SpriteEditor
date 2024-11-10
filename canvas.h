@@ -14,7 +14,6 @@ class Canvas : public QWidget
 {
     Q_OBJECT
 
-
 public:
 
     QImage* image;

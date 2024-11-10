@@ -35,10 +35,10 @@ View::View(Model& model, QWidget *parent)
     connect(ui->colorSelector, &QPushButton::clicked, this, &View::showColorDialog);
     connect(this, &View::setColor, &model, &Model::setColor);
     connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
-    connect(ui->fpsSlider, &QSlider::sliderMoved, ui->animationBox, &AnimationBox::changeFPS);
+    connect(ui->fpsSlider, &QSlider::valueChanged, ui->animationBox, &AnimationBox::changeFPS);
 
     ui->fpsSlider->setTickPosition(QSlider::TicksBelow);
-    ui->fpsSlider->setTickInterval(5);
+    ui->fpsSlider->setTickInterval(1);
     ui->fpsSlider->setMaximum(30);
     ui->fpsSlider->setMinimum(0);
 

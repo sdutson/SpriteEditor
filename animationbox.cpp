@@ -68,5 +68,9 @@ void AnimationBox::changeFPS(int newFPS)
     fps = newFPS;
     std::cout << fps << std::endl;
 
+    // Update the animation fps if a sprite is loaded
+    if (sprite) {
+        displayAnimation(*sprite);
+    }
 }
 

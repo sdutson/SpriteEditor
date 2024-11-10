@@ -49,6 +49,9 @@ private slots:
     ///
     void updateScrollView();
 
+    ///
+    /// \brief updateFPS - Updates the fps of the animation box when the user uses the slider.
+    ///
     void updateFPS();
 
     ///

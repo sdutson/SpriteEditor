@@ -22,6 +22,15 @@ void Canvas::paintEvent(QPaintEvent* event) {
         drawTransparencyGrid();
         firstPaint = false;
     }
+    bool OnionSkin = true; // TODO: Replace this with signal.
+    if (OnionSkin)
+    {
+        // TODO: Render prev & next frame in lighter opacity, changes are purely visual.
+    }
+    else
+    {
+        // TODO: Render frame normally
+    }
     QPainter painter(this);
     QImage scaledImage = image->scaled(size(), Qt::KeepAspectRatio);
     painter.setBrush(Qt::lightGray);

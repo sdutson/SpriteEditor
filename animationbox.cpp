@@ -36,6 +36,11 @@ void AnimationBox::paintEvent(QPaintEvent *event)
 
     if (!sprite)
     {
+        // Hardcoded default frame for when program starts, needs to be kept in sync with canvas.
+        QPainter painter(this);
+        painter.setBrush(Qt::lightGray);
+        painter.setPen(Qt::NoPen);
+        painter.drawRect(0, 0, width(), height());
         return;
     }
 

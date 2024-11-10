@@ -47,11 +47,6 @@ int Sprite::getSize()
     return frames.size();
 }
 
-vector<QImage>& Sprite::getFrames()
-{
-    return frames;
-}
-
 QJsonObject Sprite::saveJSON()
 {
     QJsonObject spriteJson;

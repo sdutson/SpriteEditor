@@ -69,5 +69,7 @@ private slots:
 signals:
     void changeFPS(int newFps);
     void setColor(QColor color);
+
 };
+
 #endif // VIEW_H

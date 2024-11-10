@@ -13,9 +13,8 @@ AnimationBox::AnimationBox(QWidget *parent)
     ui->setupUi(this);
 
     connect(frameTimer, &QTimer::timeout, this, QOverload<>::of(&AnimationBox::update));
-    std::cout << "In AnimationBox constructor" << std::endl; // TODO: Remove me
 
-    fps = 1;
+    fps = 1; // Initiallize fps at 1.
 }
 
 AnimationBox::~AnimationBox()
@@ -66,7 +65,6 @@ void AnimationBox::paintEvent(QPaintEvent *event)
 void AnimationBox::changeFPS(int newFPS)
 {
     fps = newFPS;
-    std::cout << fps << std::endl;
 
     // Update the animation fps if a sprite is loaded
     if (sprite) {

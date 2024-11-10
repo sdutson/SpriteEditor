@@ -10,7 +10,6 @@ using std::string;
 
 class Sprite {
 
-
 public:
     Sprite();
 
@@ -78,11 +77,10 @@ public:
     ///
     static Sprite& loadFromJSON(QJsonObject spriteJson);
 
-
 private:
 
     ///
-    /// \brief dimensions -
+    /// \brief dimensions - The dimensions of the canvas.
     ///
     QPair<int, int> dimensions = {16, 16}; // TODO: Change this to whatever we want our default dimensions to be. Note. This will have to be able to be changed later on.
 

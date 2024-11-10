@@ -8,9 +8,6 @@
 #include <QString>
 #include <QDebug>
 
-
-
-
 View::View(Model& model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
@@ -41,7 +38,7 @@ View::View(Model& model, QWidget *parent)
     ui->fpsSlider->setTickInterval(1);
     ui->fpsSlider->setMaximum(30);
     ui->fpsSlider->setMinimum(0);
-
+    //TODO: Decide whether to add numbers to tick marks on slider.
 }
 
 View::~View()
@@ -84,7 +81,7 @@ void View::deleteFrame()
 
 void View::updateFPS()
 {
-    int fpsInt = ui->fpsSlider->sliderPosition();
+    int fpsInt = ui->fpsSlider->value();
     emit changeFPS(fpsInt);
 }
 

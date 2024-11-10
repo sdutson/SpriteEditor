@@ -16,8 +16,6 @@ private:
 
 public:
 
-    // int fps; // TODO: Should this be moved to the animmationBox?
-
     QColor penColor = {Qt::black};
 
     bool erasing = false; //TODO: change to enum
@@ -28,6 +26,10 @@ public:
 
     // void saveJSON(QString destinaton);
 
+    ///
+    /// \brief getFrame - Gets the frame at the desired index.
+    /// \return  - A reference to the image that was queried.
+    ///
     QImage& getFrame(int index);
 
     ///
@@ -60,12 +62,12 @@ public:
     ///
     void loadSprite(QString filepath);
 
-
 public slots:
     void changePixel(QImage& imageToUpdate, int x, int y);
     void setToolToPen();
     void setToolToEraser();
     void setColor(QColor color);
+
 signals:
     void spriteUpdated();
     void displayAnimation(Sprite& sprite);

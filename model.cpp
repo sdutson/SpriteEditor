@@ -76,7 +76,6 @@ void Model::loadSprite(QString filepath)
     // TODO: call loadFromJson() and reassign the output to 'sprite'. (If null don't reassign and simply return.)
     // TODO: Inform the view it needs to updated and DELETE all data from previous sprite.
     // TODO: Should we warn the user if they are going to overwrite data?
-
 }
 
 

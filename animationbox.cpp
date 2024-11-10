@@ -60,3 +60,7 @@ void AnimationBox::paintEvent(QPaintEvent *event)
         currentFrameIndex++;
     }
 }
+void AnimationBox::changeFPS()
+{
+    std::cout << "Slider changed" << std::endl;
+}

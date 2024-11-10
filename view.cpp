@@ -34,6 +34,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->colorSelector, &QPushButton::clicked, this, &View::showColorDialog);
     connect(this, &View::setColor, &model, &Model::setColor);
     connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
+    connect(ui->fpsSlider, &QSlider::sliderMoved, ui->animationBox, &AnimationBox::changeFPS);
 }
 
 View::~View()

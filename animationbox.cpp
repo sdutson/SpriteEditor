@@ -1,14 +1,57 @@
 #include "animationbox.h"
 #include "ui_animationbox.h"
+#include <QTimer>
+#include <QImage>
+#include <QPainter>
+#include <iostream>
 
 AnimationBox::AnimationBox(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::AnimationBox)
+    , frameTimer(new QTimer(this))
 {
     ui->setupUi(this);
+
+    connect(frameTimer, &QTimer::timeout, this, QOverload<>::of(&AnimationBox::update));
+    std::cout << "In AnimationBox constructor" << std::endl; // TODO: Remove me
 }
 
 AnimationBox::~AnimationBox()
 {
     delete ui;
+}
+
+void AnimationBox::displayAnimation(Sprite& sprite, int frameRate)
+{
+    this->sprite = &sprite;
+    currentFrameIndex = 0;
+
+    const double ONE_SECOND_IN_MILLISECONDS = 1'000.0; // Double literal to prevent truncation from integer division.
+    frameTimer->start(ONE_SECOND_IN_MILLISECONDS / frameRate);
+}
+
+void AnimationBox::paintEvent(QPaintEvent *event)
+{
+    std::cout << "In AnimationBox paintEvent" << std::endl; // TODO: Remove me
+
+    if (!sprite)
+    {
+        return;
+    }
+
+    QPainter painter(this);
+    QImage scaledImage = sprite->getFrame(currentFrameIndex).scaled(size(), Qt::KeepAspectRatio);
+    painter.setBrush(Qt::lightGray);
+    painter.setPen(Qt::NoPen);
+    painter.drawRect(0, 0, width(), height());
+    painter.drawImage(0, 0, scaledImage);
+
+    if (currentFrameIndex == sprite->getSize() - 1)
+    {
+        currentFrameIndex = 0;
+    }
+    else
+    {
+        currentFrameIndex++;
+    }
 }

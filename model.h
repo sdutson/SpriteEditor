@@ -16,7 +16,7 @@ private:
 
 public:
 
-    // int fps; // TODO: Should this be moved to the animmationBox?
+    int fps; // TODO: Should this be moved to the animmationBox?
 
     QColor penColor = {Qt::black};
 
@@ -69,6 +69,7 @@ public slots:
 
 signals:
     void spriteUpdated();
+    void displayAnimation(Sprite& sprite, int frameRate);
 };
 
 #endif // MODEL_H

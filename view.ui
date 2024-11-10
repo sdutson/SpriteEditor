@@ -189,7 +189,7 @@
      <string>Color Selector</string>
     </property>
    </widget>
-   <widget class="AnimationBox" name="widget" native="true">
+   <widget class="AnimationBox" name="animationBox" native="true">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -246,7 +246,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>36</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

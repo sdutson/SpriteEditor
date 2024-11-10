@@ -1,10 +1,12 @@
 #include "view.h"
 #include "ui_view.h"
 #include "model.h"
+#include "animationbox.h"
 #include <QLabel>
 #include <QImage>
 #include <QString>
 #include <QDebug>
+
 
 
 
@@ -31,6 +33,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->loadButton, &QPushButton::clicked, this, &View::showLoadFileDialog);
     connect(ui->colorSelector, &QPushButton::clicked, this, &View::showColorDialog);
     connect(this, &View::setColor, &model, &Model::setColor);
+    connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
 }
 
 View::~View()

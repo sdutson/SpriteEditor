@@ -63,6 +63,8 @@ public:
     ///
     int getSize();
 
+    vector<QImage>& getFrames();
+
     ///
     /// \brief saveJSON - Serializes 'this' into a QJsonObject.
     /// \return - A QJsonObject holding all needed data to reproduce 'this' sprite.

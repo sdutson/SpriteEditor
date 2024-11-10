@@ -31,7 +31,9 @@ private:
 
     void paintEvent(QPaintEvent *event) override;
 
+
 public slots:
+    void changeFPS();
     void displayAnimation(Sprite& sprite, int frameRate);
 };
 

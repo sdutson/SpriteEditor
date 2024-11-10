@@ -66,7 +66,6 @@ public slots:
     void setToolToPen();
     void setToolToEraser();
     void setColor(QColor color);
-
 signals:
     void spriteUpdated();
     void displayAnimation(Sprite& sprite, int frameRate);

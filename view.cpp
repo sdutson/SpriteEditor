@@ -38,6 +38,9 @@ View::View(Model& model, QWidget *parent)
     ui->fpsSlider->setTickInterval(1);
     ui->fpsSlider->setMaximum(30);
     ui->fpsSlider->setMinimum(0);
+
+
+
     //TODO: Decide whether to add numbers to tick marks on slider.
 }
 

@@ -5,6 +5,7 @@
 #include <QJsonArray>
 #include <QByteArray>
 #include <QBuffer>
+#include <QPainter>
 
 using std::vector;
 
@@ -16,10 +17,16 @@ Sprite::Sprite()
 void Sprite::setDimensions(QPair<int, int> dimensions)
 {
     this->dimensions = dimensions;
-    for(QImage frame: frames)
+    for(QImage& frame: frames)
     {
-        frame = QImage(dimensions.first, dimensions.second, QImage::Format_ARGB32);
-        frame.fill(Qt::transparent);
+        QImage resized(dimensions.first, dimensions.second, QImage::Format_ARGB32);
+        resized.fill(Qt::transparent);
+
+        QPainter painter(&resized);
+        painter.drawImage(0, 0, frame);
+        painter.end();
+
+        frame = resized;
     }
 }
 

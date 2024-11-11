@@ -50,10 +50,9 @@ void Canvas::switchImage(QImage& newImage)
      // TODO: When the image is scaled up, this doesn't color the correct pixels.
      if (event->button() == Qt::LeftButton)
      {
-         // TODO: Add a chack to out out range coordinates.
         int x = event->pos().x()/(size().width()/image->width());
         int y = event->pos().y()/(size().height()/image->height());
-        if (x > 0 && x < image->width() && y > 0 && y < image->height())
+        if (x >= 0 && x < image->width() && y >= 0 && y < image->height())
         {
             emit changePixel(*image, x, y);
             update();
@@ -76,15 +75,6 @@ void Canvas::switchImage(QImage& newImage)
      }
 
  }
-
- void Canvas::mouseReleaseEvent(QMouseEvent *event)
- {
-     if (event->button() == Qt::LeftButton)
-     {
-         // qDebug() << "mouse released";
-     }
- }
-
 
  void Canvas::drawTransparencyGrid()
  {

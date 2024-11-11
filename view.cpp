@@ -40,6 +40,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->copyFrame, &QPushButton::clicked, this, &View::copyFrame);
     connect(ui->Dimension, &QSpinBox::valueChanged, this, &View::updateDimensions);
     connect(ui->jumpToFrame, &QPushButton::clicked, this, &View::jumpToFrame);
+    connect(ui->updateName, &QPushButton::clicked, this, &View::setName);
     // TODO: Connect OnionSkin button to canvas, should not be linked through model as OnionSkin is a purely visual change.
 
     ui->fpsCounter->display(1);
@@ -108,6 +109,12 @@ void View::updateFPS()
     emit changeFPS(fpsInt);
 }
 
+void View::setName()
+{
+    model.setName(ui->spriteNameText->toPlainText().toStdString());
+    ui->spriteNameText->clear();
+}
+
 void View::updateScrollView()
 {
     // TODO: Rather than a scroll view, we could simply give the user an option to update the frame that is being displayed in the frame view.
@@ -157,7 +164,8 @@ void View::showColorDialog()
 void View::resetView()
 {
     // TODO: Make sure everything gets reset correctly here.
-    ui->canvas->switchImage(model.getFrame(0));
+    this->currentFrameIndex = 0;
+    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
     updateScrollView();
 }
 

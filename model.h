@@ -72,6 +72,12 @@ public:
     ///
     void loadSprite(QString filepath);
 
+    ///
+    /// \brief setName - Updates the name of the sprite.
+    /// \param newName - The new name for the sprite.
+    ///
+    void setName(const string & newName);
+
 public slots:
     void changePixel(QImage& imageToUpdate, int x, int y);
     void setToolToPen();

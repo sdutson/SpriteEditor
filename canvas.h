@@ -37,7 +37,6 @@ private:
 
     void mouseMoveEvent(QMouseEvent *event) override;
 
-    void mouseReleaseEvent(QMouseEvent *event) override;
 
 signals:
     void changePixel(QImage& imageToUpdate, int x, int y);

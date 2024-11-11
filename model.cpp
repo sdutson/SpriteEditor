@@ -72,6 +72,11 @@ void Model::setSpriteDimensions(QPair<int, int> newDimensions)
     sprite.setDimensions(newDimensions);
 }
 
+void Model::setName(const string &newName)
+{
+    sprite.setName(newName);
+}
+
 void Model::saveSprite(QString filepath)
 {
     QJsonDocument jsonDoc(sprite.saveJSON());

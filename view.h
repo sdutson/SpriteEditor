@@ -86,6 +86,11 @@ private slots:
     ///
     void jumpToFrame();
 
+    ///
+    /// \brief setName - Updates the name of the sprite.
+    ///
+    void setName();
+
 signals:
     void changeFPS(int newFps);
     void setColor(QColor color);

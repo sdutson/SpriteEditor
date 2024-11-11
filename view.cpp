@@ -33,15 +33,23 @@ View::View(Model& model, QWidget *parent)
     connect(this, &View::setColor, &model, &Model::setColor);
     connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
     connect(ui->fpsSlider, &QSlider::valueChanged, ui->animationBox, &AnimationBox::changeFPS);
+    connect(ui->fpsSlider, &QSlider::valueChanged, this, &View::updateFPS);
 
-    ui->fpsSlider->setTickPosition(QSlider::TicksBelow);
-    ui->fpsSlider->setTickInterval(1);
-    ui->fpsSlider->setMaximum(30);
-    ui->fpsSlider->setMinimum(0);
+    ui->fpsCounter->display(1);
+
+    QPalette palette = ui->fpsCounter->palette();
+    // palette.setColor(QPalette::WindowText, Qt::blue);  // Set the digit color
+    palette.setColor(QPalette::Light, Qt::blue);  // Set the digit color
+
+    // palette.setColor(QPalette::Dark, Qt::blue);  // Set the digit color
+
+    // palette.setColor(QPalette::WindowText, Qt::blue);  // Set the digit color
+
+    ui->fpsCounter->setPalette(palette);
 
 
+    // TODO: Adjust if needed for alignment and style.
 
-    //TODO: Decide whether to add numbers to tick marks on slider.
 }
 
 View::~View()
@@ -85,6 +93,7 @@ void View::deleteFrame()
 void View::updateFPS()
 {
     int fpsInt = ui->fpsSlider->value();
+    ui->fpsCounter->display(fpsInt);
     emit changeFPS(fpsInt);
 }
 

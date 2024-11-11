@@ -36,6 +36,8 @@ View::View(Model& model, QWidget *parent)
     connect(ui->fpsSlider, &QSlider::valueChanged, this, &View::updateFPS);
     connect(&model, &Model::resetView, this, &View::resetView);
     connect(ui->copyFrame, &QPushButton::clicked, this, &View::copyFrame);
+    connect(ui->xDimension, &QSpinBox::valueChanged, this, &View::updateDimensions);
+    connect(ui->yDimension, &QSpinBox::valueChanged, this, &View::updateDimensions);
     // TODO: Connect OnionSkin button to canvas, should not be linked through model as OnionSkin is a purely visual change.
 
     ui->fpsCounter->display(1);
@@ -90,6 +92,13 @@ void View::copyFrame()
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
 }
 
+void View::updateDimensions()
+{
+    QPair<int, int> newDimensions(ui->xDimension->value(), ui->yDimension->value());
+    model.setSpriteDimensions(newDimensions);
+    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
+}
+
 void View::updateFPS()
 {
     int fpsInt = ui->fpsSlider->value();
@@ -99,6 +108,7 @@ void View::updateFPS()
 
 void View::updateScrollView()
 {
+    // TODO: Rather than a scroll view, we could simply give the user an option to update the frame that is being displayed in the frame view.
     // Clear the existing widgets in the layout
     QLayoutItem *label;
     while ((label = layout.takeAt(0)) != nullptr) {

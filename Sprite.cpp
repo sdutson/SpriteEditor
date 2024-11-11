@@ -13,6 +13,16 @@ Sprite::Sprite()
     vector<QImage> frames;
 }
 
+void Sprite::setDimensions(QPair<int, int> dimensions)
+{
+    this->dimensions = dimensions;
+    for(QImage frame: frames)
+    {
+        frame = QImage(dimensions.first, dimensions.second, QImage::Format_ARGB32);
+        frame.fill(Qt::transparent);
+    }
+}
+
 int Sprite::addFrame(int index)
 {
     QImage emptyImage(dimensions.first, dimensions.second, QImage::Format_ARGB32);

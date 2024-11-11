@@ -59,12 +59,6 @@ public:
     void setDimensions(QPair<int, int> dimensions);
 
     ///
-    /// \brief getDimensions - the dimensions of this sprite
-    /// \return -
-    ///
-    QPair<int, int>& getDimensions();
-
-    ///
     /// \brief getSize - Returns the number of frames in the sprite.
     ///
     int getSize();

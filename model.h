@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QImage>
 #include <QString>
+#include <QPair>
 #include "Sprite.h"
 
     class Model : public QObject
@@ -22,9 +23,11 @@ public:
 
     explicit Model(QObject *parent = nullptr);
 
-    // void loadJSON(QString source);
-
-    // void saveJSON(QString destinaton);
+    ///
+    /// \brief setSpriteDimensions - Sets/Updates the dimensions of 'sprite'
+    /// \param newDimensions - The new dimensions for the sprite.
+    ///
+    void setSpriteDimensions(QPair<int, int> newDimensions);
 
     ///
     /// \brief getFrame - Gets the frame at the desired index.

@@ -37,7 +37,6 @@ private slots:
     ///
     void addFrame();
 
-
     ///
     /// \brief deleteFrame - Slot for when the user pressed the deleteFrameButton in the ui.
     /// This slot deletes the last frame from the sprite. The canvas is then updated appropriatly.
@@ -69,12 +68,18 @@ private slots:
     ///
     void showLoadFileDialog();
 
+
     void showColorDialog();
 
     ///
     /// \brief resetView - Resets the view. Called when the user loads in a new sprite.
     ///
     void resetView();
+
+    ///
+    /// \brief updateDimensions - Updates the dimensions of the current sprite.
+    ///
+    void updateDimensions();
 
 signals:
     void changeFPS(int newFps);

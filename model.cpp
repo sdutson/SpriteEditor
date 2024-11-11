@@ -40,7 +40,7 @@ void Model::setColor(QColor color)
     penColor = color;
 }
 
-QImage& Model::addFrame(int index)
+int Model::addFrame(int index)
 {
     return sprite.addFrame(index);
     emit spriteUpdated();
@@ -49,12 +49,17 @@ QImage& Model::addFrame(int index)
 QImage& Model::getFrame(int index)
 {
     return sprite.getFrame(index);
+}
+
+int Model::deleteFrame(int index)
+{
+    return sprite.deleteFrame(index);
     emit spriteUpdated();
 }
 
-QImage& Model::deleteFrame(int index)
+int Model::copyFrame(int index)
 {
-    return sprite.deleteFrame(index);
+    return sprite.copyFrame(index);
 }
 
 int Model::getSize()
@@ -87,7 +92,7 @@ void Model::loadSprite(QString filepath)
             return;
         }
         loadedSprite = Sprite::loadFromJSON(jsonDoc.object());
-        if (loadedSprite.getSize() == 0) {  // TODO: Add more checks here to ensure the sprite was built correctly.
+        if (loadedSprite.getSize() == 0) {
             qWarning("Failed to load sprite from JSON."); // Catch for failed load.
             return;
         }

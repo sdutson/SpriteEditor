@@ -28,6 +28,7 @@ private:
     QVBoxLayout *scrollViewLayout;
     Model& model;
     QVBoxLayout layout;
+    int currentFrameIndex;
 
 private slots:
     ///
@@ -43,6 +44,10 @@ private slots:
     ///
     void deleteFrame();
 
+    ///
+    /// \brief copyFrame - Makes a copy of the current frame.
+    ///
+    void copyFrame();
 
     ///
     /// \brief updateScrollView - Updates the contents of the scroll view.

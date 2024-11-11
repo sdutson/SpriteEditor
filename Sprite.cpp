@@ -13,23 +13,30 @@ Sprite::Sprite()
     vector<QImage> frames;
 }
 
-QImage& Sprite::addFrame(int index)
+int Sprite::addFrame(int index)
 {
     QImage emptyImage(dimensions.first, dimensions.second, QImage::Format_ARGB32);
     emptyImage.fill(Qt::transparent);
 
     frames.insert(frames.begin() + index, emptyImage);
-    return frames[index];
+    return index;
 }
 
-QImage& Sprite::deleteFrame(int index)
+int Sprite::copyFrame(int index)
+{
+    QImage copyImage = frames[index].copy();
+    frames.insert(frames.begin() + index + 1, copyImage);
+    return index + 1;
+}
+
+int Sprite::deleteFrame(int index)
 {
     frames.erase(frames.begin() + index);
     if(index == 0)
     {
-        return frames[index];
+        return index;
     }
-    return frames[index - 1];
+    return index - 1;
 }
 
 QImage& Sprite::getFrame(int index)
@@ -61,7 +68,7 @@ QJsonObject Sprite::saveJSON()
         QByteArray byteArray;
         QBuffer buffer(&byteArray);
         buffer.open(QIODevice::WriteOnly);
-        frame.save(&buffer, "PNG");  // TODO: Should we use a differnt format here?
+        frame.save(&buffer, "PNG");
         QString convertedImage = QString::fromUtf8(byteArray.toBase64());
 
         jsonFrames.append(convertedImage);

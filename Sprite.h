@@ -15,16 +15,16 @@ public:
 
     ///
     /// \brief addFrame - Adds an empty image at the desired index.
-    /// \return - A referance to the image that was added.
+    /// \return - The index of the frame that was added.
     ///
-    QImage& addFrame(int index);
+   int addFrame(int index);
 
     ///
     /// \brief deleteFrame - Deletes the frame at the given index.
     /// \param index - Index of the frame to delete.
-    /// \return - The image to replace the deleted one.
+    /// \return - The index of the new 'current' frame.
     ///
-    QImage& deleteFrame(int index);
+    int deleteFrame(int index);
 
     ///
     /// \brief getFrame - gets the frame at index.
@@ -32,6 +32,13 @@ public:
     /// \return - the frame at the index in the sprite. nothing if no frame exists at index.
     ///
     QImage& getFrame(int index);
+
+    ///
+    /// \brief copyFrame - Adds a copy of the given frame to frames.
+    /// \param frame - The index of the frame to copy.
+    /// \return - The index of the frame that was added.
+    ///
+    int copyFrame(int index);
 
     ///
     /// \brief setName - sets the name of this sprite.

@@ -35,6 +35,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->fpsSlider, &QSlider::valueChanged, ui->animationBox, &AnimationBox::changeFPS);
     connect(ui->fpsSlider, &QSlider::valueChanged, this, &View::updateFPS);
     connect(&model, &Model::resetView, this, &View::resetView);
+    connect(ui->copyFrame, &QPushButton::clicked, this, &View::copyFrame);
     // TODO: Connect OnionSkin button to canvas, should not be linked through model as OnionSkin is a purely visual change.
 
     ui->fpsCounter->display(1);
@@ -60,7 +61,8 @@ void View::addFrame()
     {
         index = 0;
     }
-    ui->canvas->switchImage(model.addFrame(index));
+    this->currentFrameIndex = model.addFrame(index);
+    ui->canvas->switchImage(model.getFrame(currentFrameIndex));
 }
 
 void View::deleteFrame()
@@ -78,7 +80,14 @@ void View::deleteFrame()
     {
         index = 0;
     }
-    ui->canvas->switchImage(model.deleteFrame(index));
+    this->currentFrameIndex = model.deleteFrame(index);
+    ui->canvas->switchImage(model.getFrame(currentFrameIndex));
+}
+
+void View::copyFrame()
+{
+    this->currentFrameIndex = model.copyFrame(this->currentFrameIndex);
+    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
 }
 
 void View::updateFPS()
@@ -134,6 +143,7 @@ void View::showColorDialog()
 
 void View::resetView()
 {
+    // TODO: Make sure everything gets reset correctly here.
     ui->canvas->switchImage(model.getFrame(0));
     updateScrollView();
 }

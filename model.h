@@ -34,15 +34,22 @@ public:
 
     ///
     /// \brief addFrame - Adds a frame to the model at the desired index.
-    /// \return - A referance to the image that was added.
+    /// \return - The index of the image that was added.
     ///
-    QImage& addFrame(int index);
+    int addFrame(int index);
 
     ///
     /// \brief deleteFrame - Deletes the frame at the current index from the sprite.
-    /// \return - The frame to replace the deleted one.
+    /// \return - The index of the image that was added.
     ///
-    QImage& deleteFrame(int index);
+    int deleteFrame(int index);
+
+    ///
+    /// \brief copyFrame - Copies the given frame.
+    /// \param frame - The index of the frame to be copied.
+    /// \return - The index of the frame that was added.
+    ///
+    int copyFrame(int index);
 
     ///
     /// \brief getSize - Returns the number of frames in the model's sprite.

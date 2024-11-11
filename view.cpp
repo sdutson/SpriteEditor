@@ -16,6 +16,8 @@ View::View(Model& model, QWidget *parent)
     ui->setupUi(this);
     addFrame();
 
+    ui->colorDisplay->setStyleSheet("background-color: black;");
+
     // Set up scroll view.
     ui->frames->setWidgetResizable(true);
     QVBoxLayout layout(ui->scrollAreaWidgetContents);
@@ -148,6 +150,7 @@ void View::showLoadFileDialog()
 void View::showColorDialog()
 {
     QColor color = QColorDialog::getColor();
+    ui->colorDisplay->setStyleSheet(QString("background-color: %1;").arg(color.name()));
     emit setColor(color);
 }
 

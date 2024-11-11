@@ -33,6 +33,7 @@ View::View(Model& model, QWidget *parent)
     connect(this, &View::setColor, &model, &Model::setColor);
     connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
     connect(ui->fpsSlider, &QSlider::valueChanged, ui->animationBox, &AnimationBox::changeFPS);
+    // TODO: Connect OnionSkin button to canvas, should not be linked through model as OnionSkin is a purely visual change.
 
     ui->fpsSlider->setTickPosition(QSlider::TicksBelow);
     ui->fpsSlider->setTickInterval(1);

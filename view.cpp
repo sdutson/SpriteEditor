@@ -33,20 +33,20 @@ View::View(Model& model, QWidget *parent)
     connect(this, &View::setColor, &model, &Model::setColor);
     connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
     connect(ui->fpsSlider, &QSlider::valueChanged, ui->animationBox, &AnimationBox::changeFPS);
+    connect(ui->fpsSlider, &QSlider::valueChanged, this, &View::updateFPS);
     // TODO: Connect OnionSkin button to canvas, should not be linked through model as OnionSkin is a purely visual change.
 
+    ui->fpsCounter->display(1);
 
-
-
-
-
+    QPalette palette = ui->fpsCounter->palette();
+    palette.setColor(QPalette::Light, QColor(105, 202, 250));  // Set the digit color
+    ui->fpsCounter->setPalette(palette);
 }
 
 View::~View()
 {
     delete ui;
 }
-
 
 void View::addFrame()
 {
@@ -135,8 +135,4 @@ void View::showColorDialog()
 
 
 
-// ui->fpsCounter->display(1);
 
-// QPalette palette = ui->fpsCounter->palette();
-// palette.setColor(QPalette::Light, Qt::blue);  // Set the digit color
-// ui->fpsCounter->setPalette(palette);

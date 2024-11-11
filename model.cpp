@@ -83,7 +83,7 @@ void Model::loadSprite(QString filepath)
         return;
     }
     Sprite loadedSprite = Sprite::loadFromJSON(jsonDoc.object());
-    if (loadedSprite.getSize() == 0 || loadedSprite.isNull()) {  // Assuming we can verify a good load from getSize.
+    if (loadedSprite.getSize() == 0) {  // Assuming we can verify a good load from getSize.
         qWarning("Failed to load sprite from JSON."); // Catch for failed load.
         return;
     }

@@ -58,7 +58,14 @@ int Sprite::deleteFrame(int index)
 
 QImage& Sprite::getFrame(int index)
 {
-    return frames.at(index);
+    try
+    {
+        return frames.at(index);
+    }
+    catch(...)
+    {
+        return frames.at(frames.size() -1);
+    }
 }
 
 void Sprite::setName(const string& newName)

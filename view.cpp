@@ -7,6 +7,7 @@
 #include <QImage>
 #include <QString>
 #include <QDebug>
+#include <QMessageBox>
 
 View::View(Model& model, QWidget *parent)
     : QMainWindow(parent)
@@ -126,18 +127,23 @@ void View::updateScrollView()
         qWarning() << "Invalid currentFrameIndex:" << currentFrameIndex;
         return;
     }
+
     QImage canvasImage = model.getFrame(currentFrameIndex);
     if (canvasImage.isNull()) {
         qWarning() << "Canvas image is null!";
         return;
     }
+
     QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
     imageLabel->setScaledContents(true);
     imageLabel->setFixedSize(100, 100);
     imageLabel->setStyleSheet("border: 1px solid red;");
+
     QPixmap pixmap = QPixmap::fromImage(canvasImage);
     imageLabel->setPixmap(pixmap);
     layout->addWidget(imageLabel);
+
+    layout->update();
 }
 
 void View::showSaveFileDialog()
@@ -148,6 +154,7 @@ void View::showSaveFileDialog()
 
 void View::showLoadFileDialog()
 {
+    QMessageBox::warning(this, "Warning", "Loading in a new sprite will overwrite all unsaved data.", QMessageBox::Ok);
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open file"), "/Users/samueldutson", tr("All files (*.*)"));
     model.loadSprite(filePath);
 }
@@ -161,7 +168,6 @@ void View::showColorDialog()
 
 void View::resetView()
 {
-    // TODO: Make sure everything gets reset correctly here.
     this->currentFrameIndex = 0;
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
     updateScrollView();

@@ -77,21 +77,22 @@ void Model::loadSprite(QString filepath)
         qWarning("Could not open file"); // Catch for bad filepath.
         return;
     }
+
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
     if (jsonDoc.isNull() || !jsonDoc.isObject()) {
         qWarning("Invalid JSON format"); // Catch for bad JSON.
         return;
     }
     Sprite loadedSprite = Sprite::loadFromJSON(jsonDoc.object());
-    if (loadedSprite.getSize() == 0) {  // Assuming we can verify a good load from getSize.
+    if (loadedSprite.getSize() == 0) {  // TODO: Add more checks here to ensure the sprite was built correctly.
         qWarning("Failed to load sprite from JSON."); // Catch for failed load.
         return;
     }
-
-    // TODO: Load in the QJsonObject(If inproperly formatted, simply return.)
-    // TODO: call loadFromJson() and reassign the output to 'sprite'. (If null don't reassign and simply return.)
-    // TODO: Inform the view it needs to updated and DELETE all data from previous sprite.
-    // TODO: Should we warn the user if they are going to overwrite data? Yes.
+     // TODO: Warn user if data if going to be overwriten.
+    // delete this->sprite; // TODO: Do we need to delete the old sprite?
+    this->sprite = loadedSprite;
+    emit resetView();
+    emit displayAnimation(sprite);
 }
 
 

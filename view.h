@@ -66,6 +66,11 @@ private slots:
 
     void showColorDialog();
 
+    ///
+    /// \brief resetView - Resets the view. Called when the user loads in a new sprite.
+    ///
+    void resetView();
+
 signals:
     void changeFPS(int newFps);
     void setColor(QColor color);

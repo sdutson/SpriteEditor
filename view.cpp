@@ -34,6 +34,7 @@ View::View(Model& model, QWidget *parent)
     connect(&model, &Model::displayAnimation, ui->animationBox, &AnimationBox::displayAnimation);
     connect(ui->fpsSlider, &QSlider::valueChanged, ui->animationBox, &AnimationBox::changeFPS);
     connect(ui->fpsSlider, &QSlider::valueChanged, this, &View::updateFPS);
+    connect(&model, &Model::resetView, this, &View::resetView);
     // TODO: Connect OnionSkin button to canvas, should not be linked through model as OnionSkin is a purely visual change.
 
     ui->fpsCounter->display(1);
@@ -115,19 +116,26 @@ void View::updateScrollView()
 
 void View::showSaveFileDialog()
 {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("save file"), "/Users/samueldutson",  tr("JSON files(*.json)")); // TODO: Make sure this is enforced.
+    QString filePath = QFileDialog::getSaveFileName(this, tr("save file"), "/Users/samueldutson",  tr("All files (*.*)")); // TODO: Make sure this is enforced.
     model.saveSprite(filePath);
 }
 
 void View::showLoadFileDialog()
 {
-    QString filePath = QFileDialog::getOpenFileName(this, tr("open file"), "/Users/samueldutson", tr("JSON files(*.json"));
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open file"), "/Users/samueldutson", tr("JSON files(*.json"));
+    model.loadSprite(filePath);
 }
 
 void View::showColorDialog()
 {
     QColor color = QColorDialog::getColor();
     emit setColor(color);
+}
+
+void View::resetView()
+{
+    ui->canvas->switchImage(model.getFrame(0));
+    updateScrollView();
 }
 
 

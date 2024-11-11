@@ -71,6 +71,7 @@ public slots:
 signals:
     void spriteUpdated();
     void displayAnimation(Sprite& sprite);
+    void resetView();
 };
 
 #endif // MODEL_H

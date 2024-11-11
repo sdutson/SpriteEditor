@@ -72,6 +72,25 @@ QJsonObject Sprite::saveJSON()
 }
 
 Sprite& Sprite::loadFromJSON(QJsonObject spriteJson)
-{    
-    // TODO: Load frames, dimensions, and name from the file. Build a sprite object and return.
+{
+    Sprite loadedSprite;
+    try
+    {
+        QJsonArray encodedFrames = spriteJson["frames"].toArray();
+        for(const QJsonValue &jsonFrame: encodedFrames)
+        {
+            QByteArray byteArray = QByteArray::fromBase64(jsonFrame.toString().toUtf8());
+            QImage image;
+            image.loadFromData(byteArray);
+            loadedSprite.frames.push_back(image);
+        }
+        loadedSprite.name = spriteJson["name"].toString();
+        loadedSprite.dimensions.first = spriteJson["width"].toInt();
+        loadedSprite.dimensions.second = spriteJson["height"].toInt();
+    }
+    catch(...)
+    {
+        return loadedSprite;
+    }
+    return loadedSprite;
 }

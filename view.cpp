@@ -25,14 +25,14 @@ View::View(Model& model, QWidget *parent)
     connect(ui->canvas, &Canvas::changePixel, &model, &Model::changePixel);
     connect(ui->penButton, &QPushButton::clicked, &model, &Model::setToolToPen);
     connect(ui->eraserButton, &QPushButton::clicked, &model, &Model::setToolToEraser);
+    connect(ui->addFrameButton, &QPushButton::clicked, this, &View::addFrame);
 
     //TODO: Delete this message when done -
     //We need to make sure the commented out portion doesn't break any code,
     //It appears that this was part of what was breaking the scroll view.
     //I added the new connection so that add frame button updates the scroll view.
-    connect(ui->addFrameButton, &QPushButton::clicked, this, &View::addFrame);
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::updateScrollView);
-    // connect(&model, &Model::spriteUpdated, this, &View::updateScrollView);
+    //connect(&model, &Model::spriteUpdated, this, &View::updateScrollView);
 
     connect(ui->deleteFrameButton, &QPushButton::clicked, this, &View::deleteFrame);
     connect(ui->saveButton, &QPushButton::clicked, this, &View::showSaveFileDialog);
@@ -118,7 +118,6 @@ void View::updateFPS()
 void View::setName()
 {
     model.setName(ui->spriteNameText->toPlainText().toStdString());
-    ui->spriteNameText->clear();
 }
 
 void View::updateScrollView()
@@ -134,6 +133,7 @@ void View::updateScrollView()
         return;
     }
 
+
     QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
     imageLabel->setScaledContents(true);
     imageLabel->setFixedSize(100, 100);
@@ -148,14 +148,14 @@ void View::updateScrollView()
 
 void View::showSaveFileDialog()
 {
-    QString filePath = QFileDialog::getSaveFileName(this, tr("save file"), "/Users/samueldutson",  tr("JSON files(*.json")); // TODO: Make sure this is enforced.
+    QString filePath = QFileDialog::getSaveFileName(this, tr("save file"), "/Users",  tr("Json files (*.json)"));
     model.saveSprite(filePath);
 }
 
 void View::showLoadFileDialog()
 {
     QMessageBox::warning(this, "Warning", "Loading in a new sprite will overwrite all unsaved data.", QMessageBox::Ok);
-    QString filePath = QFileDialog::getOpenFileName(this, tr("Open file"), "/Users/samueldutson", tr("All files (*.*)"));
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open file"), "/Users", tr("All files (*.*)"));
     model.loadSprite(filePath);
 }
 
@@ -170,6 +170,7 @@ void View::resetView()
 {
     this->currentFrameIndex = 0;
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
+    ui->spriteNameText->setPlainText(model.getName());
     updateScrollView();
 }
 

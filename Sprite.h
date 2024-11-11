@@ -50,7 +50,7 @@ public:
     /// \brief getName - gets the name of this sprite.
     /// \return - sprite name.
     ///
-    string getName();
+    QString getName();
 
     ///
     /// \brief setDimensions

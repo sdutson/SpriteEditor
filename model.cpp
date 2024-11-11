@@ -77,6 +77,11 @@ void Model::setName(const string &newName)
     sprite.setName(newName);
 }
 
+QString Model::getName()
+{
+    return sprite.getName();
+}
+
 void Model::saveSprite(QString filepath)
 {
     QJsonDocument jsonDoc(sprite.saveJSON());

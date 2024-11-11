@@ -78,6 +78,11 @@ int Sprite::getSize()
     return frames.size();
 }
 
+QString Sprite::getName()
+{
+    return this->name;
+}
+
 QJsonObject Sprite::saveJSON()
 {
     QJsonObject spriteJson;

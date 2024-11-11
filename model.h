@@ -78,6 +78,11 @@ public:
     ///
     void setName(const string & newName);
 
+    ///
+    /// \return - The name of 'sprite'
+    ///
+    QString getName();
+
 public slots:
     void changePixel(QImage& imageToUpdate, int x, int y);
     void setToolToPen();

@@ -81,6 +81,11 @@ private slots:
     ///
     void updateDimensions();
 
+    ///
+    /// \brief jumpToFrame - Jumps to(Updates canvas) to the frame desired by the user.
+    ///
+    void jumpToFrame();
+
 signals:
     void changeFPS(int newFps);
     void setColor(QColor color);

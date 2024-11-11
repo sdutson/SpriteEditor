@@ -38,8 +38,8 @@ View::View(Model& model, QWidget *parent)
     connect(ui->fpsSlider, &QSlider::valueChanged, this, &View::updateFPS);
     connect(&model, &Model::resetView, this, &View::resetView);
     connect(ui->copyFrame, &QPushButton::clicked, this, &View::copyFrame);
-    connect(ui->xDimension, &QSpinBox::valueChanged, this, &View::updateDimensions);
-    connect(ui->yDimension, &QSpinBox::valueChanged, this, &View::updateDimensions);
+    connect(ui->Dimension, &QSpinBox::valueChanged, this, &View::updateDimensions);
+    connect(ui->jumpToFrame, &QPushButton::clicked, this, &View::jumpToFrame);
     // TODO: Connect OnionSkin button to canvas, should not be linked through model as OnionSkin is a purely visual change.
 
     ui->fpsCounter->display(1);
@@ -96,7 +96,7 @@ void View::copyFrame()
 
 void View::updateDimensions()
 {
-    QPair<int, int> newDimensions(ui->xDimension->value(), ui->yDimension->value());
+    QPair<int, int> newDimensions(ui->Dimension->value(), ui->Dimension->value());
     model.setSpriteDimensions(newDimensions);
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
 }
@@ -159,6 +159,12 @@ void View::resetView()
     // TODO: Make sure everything gets reset correctly here.
     ui->canvas->switchImage(model.getFrame(0));
     updateScrollView();
+}
+
+void View::jumpToFrame()
+{
+    this->currentFrameIndex = ui->jumpToIndex->value();
+    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
 }
 
 

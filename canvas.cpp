@@ -47,6 +47,7 @@ void Canvas::switchImage(QImage& newImage)
 
  void Canvas::mousePressEvent(QMouseEvent *event)
  {
+     // TODO: When the image is scaled up, this doesn't color the correct pixels.
      if (event->button() == Qt::LeftButton)
      {
          // TODO: Add a chack to out out range coordinates.

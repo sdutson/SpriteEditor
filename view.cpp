@@ -18,17 +18,22 @@ View::View(Model& model, QWidget *parent)
 
     ui->colorDisplay->setStyleSheet("background-color: black;");
 
-    // Set up scroll view.
-    ui->frames->setWidgetResizable(true);
-    QVBoxLayout layout(ui->scrollAreaWidgetContents);
-    updateScrollView();
+    layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
+    ui->scrollAreaWidgetContents->setLayout(layout);
 
     connect(ui->canvas, &Canvas::changePixel, &model, &Model::changePixel);
     connect(ui->penButton, &QPushButton::clicked, &model, &Model::setToolToPen);
     connect(ui->eraserButton, &QPushButton::clicked, &model, &Model::setToolToEraser);
+
+    //TODO: Delete this message when done -
+    //We need to make sure the commented out portion doesn't break any code,
+    //It appears that this was part of what was breaking the scroll view.
+    //I added the new connection so that add frame button updates the scroll view.
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::addFrame);
+    connect(ui->addFrameButton, &QPushButton::clicked, this, &View::updateScrollView);
+    // connect(&model, &Model::spriteUpdated, this, &View::updateScrollView);
+
     connect(ui->deleteFrameButton, &QPushButton::clicked, this, &View::deleteFrame);
-    connect(&model, &Model::spriteUpdated, this, &View::updateScrollView);
     connect(ui->saveButton, &QPushButton::clicked, this, &View::showSaveFileDialog);
     connect(ui->loadButton, &QPushButton::clicked, this, &View::showLoadFileDialog);
     connect(ui->colorSelector, &QPushButton::clicked, this, &View::showColorDialog);
@@ -117,29 +122,22 @@ void View::setName()
 
 void View::updateScrollView()
 {
-    // TODO: Rather than a scroll view, we could simply give the user an option to update the frame that is being displayed in the frame view.
-    // Clear the existing widgets in the layout
-    QLayoutItem *label;
-    while ((label = layout.takeAt(0)) != nullptr) {
-        delete label->widget();
-        delete label;
+    if (currentFrameIndex < 0 || currentFrameIndex >= model.getSize()) {
+        qWarning() << "Invalid currentFrameIndex:" << currentFrameIndex;
+        return;
     }
-
-    // TODO: Try to find a way to not have to rebuilt this every time.
-    for(int index = 0; index < model.getSize(); index++)
-    {
-        QLabel *imageLabel = new QLabel("No image loaded", ui->scrollAreaWidgetContents);
-        imageLabel->setScaledContents(true);
-        imageLabel->setFixedWidth(100);
-        imageLabel->setFixedHeight(100); // TODO: Change these to update based on spries dimensions.
-
-        QPixmap pixmap = QPixmap::fromImage(model.getFrame(index));
-        imageLabel->setPixmap(pixmap);
-        imageLabel->setText("");
-
-        layout.addWidget(imageLabel);
+    QImage canvasImage = model.getFrame(currentFrameIndex);
+    if (canvasImage.isNull()) {
+        qWarning() << "Canvas image is null!";
+        return;
     }
-    layout.update();
+    QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
+    imageLabel->setScaledContents(true);
+    imageLabel->setFixedSize(100, 100);
+    imageLabel->setStyleSheet("border: 1px solid red;");
+    QPixmap pixmap = QPixmap::fromImage(canvasImage);
+    imageLabel->setPixmap(pixmap);
+    layout->addWidget(imageLabel);
 }
 
 void View::showSaveFileDialog()

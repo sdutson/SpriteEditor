@@ -27,7 +27,7 @@ private:
     QWidget *imageContainer;
     QVBoxLayout *scrollViewLayout;
     Model& model;
-    QVBoxLayout layout;
+    QVBoxLayout *layout;
     int currentFrameIndex;
 
 private slots:

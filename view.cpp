@@ -35,20 +35,15 @@ View::View(Model& model, QWidget *parent)
     connect(ui->fpsSlider, &QSlider::valueChanged, ui->animationBox, &AnimationBox::changeFPS);
     connect(ui->fpsSlider, &QSlider::valueChanged, this, &View::updateFPS);
 
+
+
+
+
     ui->fpsCounter->display(1);
 
     QPalette palette = ui->fpsCounter->palette();
-    // palette.setColor(QPalette::WindowText, Qt::blue);  // Set the digit color
     palette.setColor(QPalette::Light, Qt::blue);  // Set the digit color
-
-    // palette.setColor(QPalette::Dark, Qt::blue);  // Set the digit color
-
-    // palette.setColor(QPalette::WindowText, Qt::blue);  // Set the digit color
-
     ui->fpsCounter->setPalette(palette);
-
-
-    // TODO: Adjust if needed for alignment and style.
 
 }
 

@@ -72,6 +72,6 @@ QJsonObject Sprite::saveJSON()
 }
 
 Sprite& Sprite::loadFromJSON(QJsonObject spriteJson)
-{
+{    
     // TODO: Load frames, dimensions, and name from the file. Build a sprite object and return.
 }

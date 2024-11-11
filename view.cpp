@@ -39,7 +39,7 @@ View::View(Model& model, QWidget *parent)
     ui->fpsCounter->display(1);
 
     QPalette palette = ui->fpsCounter->palette();
-    palette.setColor(QPalette::Light, QColor(105, 202, 250));  // Set the digit color
+    palette.setColor(QPalette::WindowText, QColor(172, 226, 252));  // Set the digit color
     ui->fpsCounter->setPalette(palette);
 }
 

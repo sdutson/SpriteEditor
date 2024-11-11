@@ -283,6 +283,9 @@
       <pointsize>9</pointsize>
      </font>
     </property>
+    <property name="segmentStyle">
+     <enum>QLCDNumber::SegmentStyle::Flat</enum>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -71,25 +71,54 @@ QJsonObject Sprite::saveJSON()
     return spriteJson;
 }
 
-Sprite& Sprite::loadFromJSON(QJsonObject spriteJson)
+Sprite Sprite::loadFromJSON(QJsonObject spriteJson)
 {
     Sprite loadedSprite;
     try
     {
+        if(!spriteJson.contains("frames") || !spriteJson["frames"].isArray())
+        {
+            qWarning("Frames could not be loaded.");
+            loadedSprite.frames.clear();
+            return loadedSprite;
+        }
         QJsonArray encodedFrames = spriteJson["frames"].toArray();
+
         for(const QJsonValue &jsonFrame: encodedFrames)
         {
+            if(!jsonFrame.isString())
+            {
+                qWarning("Frame is improperly formatted");
+                loadedSprite.frames.clear();
+                return loadedSprite;
+            }
             QByteArray byteArray = QByteArray::fromBase64(jsonFrame.toString().toUtf8());
             QImage image;
-            image.loadFromData(byteArray);
+            if(!image.loadFromData(byteArray))
+            {
+                qWarning("Unable to load image from json.");
+                loadedSprite.frames.clear();
+                return loadedSprite;
+            }
             loadedSprite.frames.push_back(image);
         }
+
+        if(!spriteJson.contains("name") || !spriteJson["name"].isString()
+            || !spriteJson.contains("width") || !spriteJson.contains("height"))
+        {
+            qWarning("Name and dimensions improperly formatted.");
+            loadedSprite.frames.clear();
+            return loadedSprite;
+        }
+
         loadedSprite.name = spriteJson["name"].toString();
         loadedSprite.dimensions.first = spriteJson["width"].toInt();
         loadedSprite.dimensions.second = spriteJson["height"].toInt();
     }
     catch(...)
     {
+        qWarning("Exception thrown when loading sprite.");
+        loadedSprite.frames.clear();
         return loadedSprite;
     }
     return loadedSprite;

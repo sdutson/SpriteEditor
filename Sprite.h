@@ -73,7 +73,7 @@ public:
     /// \return - A sprite object constructed from spriteJson.
     /// \param spriteJson - The object to be deserialized.
     ///
-    static Sprite& loadFromJSON(QJsonObject spriteJson);
+    static Sprite loadFromJSON(QJsonObject spriteJson);
 
 private:
 

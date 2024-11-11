@@ -72,22 +72,32 @@ void Model::saveSprite(QString filepath)
 
 void Model::loadSprite(QString filepath)
 {
-    QFile jsonFile(filepath);
-    if (!jsonFile.open(QFile::ReadOnly)) {
-        qWarning("Could not open file"); // Catch for bad filepath.
-        return;
-    }
+    Sprite loadedSprite;
+    try
+    {
+        QFile jsonFile(filepath);
+        if (!jsonFile.open(QFile::ReadOnly)) {
+            qWarning("Could not open file"); // Catch for bad filepath.
+            return;
+        }
 
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
-    if (jsonDoc.isNull() || !jsonDoc.isObject()) {
-        qWarning("Invalid JSON format"); // Catch for bad JSON.
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
+        if (jsonDoc.isNull() || !jsonDoc.isObject()) {
+            qWarning("Invalid JSON format"); // Catch for bad JSON.
+            return;
+        }
+        loadedSprite = Sprite::loadFromJSON(jsonDoc.object());
+        if (loadedSprite.getSize() == 0) {  // TODO: Add more checks here to ensure the sprite was built correctly.
+            qWarning("Failed to load sprite from JSON."); // Catch for failed load.
+            return;
+        }
+    }
+    catch(...)
+    {
+        qWarning("Failed to load Json.");
         return;
     }
-    Sprite loadedSprite = Sprite::loadFromJSON(jsonDoc.object());
-    if (loadedSprite.getSize() == 0) {  // TODO: Add more checks here to ensure the sprite was built correctly.
-        qWarning("Failed to load sprite from JSON."); // Catch for failed load.
-        return;
-    }
+    qWarning("Loaded sprite");
      // TODO: Warn user if data if going to be overwriten.
     // delete this->sprite; // TODO: Do we need to delete the old sprite?
     this->sprite = loadedSprite;

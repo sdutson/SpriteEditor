@@ -20,14 +20,17 @@ AnimationBox::~AnimationBox() {
     delete ui;
 }
 
-
 void AnimationBox::displayAnimation(Sprite& sprite)
 {
     this->sprite = &sprite;
     currentFrameIndex = 0;
-
     const double ONE_SECOND_IN_MILLISECONDS = 1'000.0; // Double literal to prevent truncation from integer division.
-    frameTimer->start(ONE_SECOND_IN_MILLISECONDS / fps);
+    if(fps>0){
+        frameTimer->start(ONE_SECOND_IN_MILLISECONDS / fps);
+    }
+    else{
+        frameTimer->stop();
+    }
 }
 
 void AnimationBox::paintEvent(QPaintEvent *event)

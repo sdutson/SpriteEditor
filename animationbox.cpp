@@ -33,7 +33,7 @@ void AnimationBox::displayAnimation(Sprite& sprite)
 
 void AnimationBox::paintEvent(QPaintEvent *event)
 {
-    std::cout << "In AnimationBox paintEvent" << std::endl; // TODO: Remove me
+    // std::cout << "In AnimationBox paintEvent" << std::endl; // TODO: Remove me
 
     if (!sprite)
     {

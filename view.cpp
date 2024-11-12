@@ -1,5 +1,4 @@
 #include "view.h"
-#include "ui_animationbox.h"
 #include "ui_view.h"
 #include "model.h"
 #include "animationbox.h"
@@ -8,6 +7,7 @@
 #include <QString>
 #include <QDebug>
 #include <QMessageBox>
+#include <iostream>
 
 View::View(Model& model, QWidget *parent)
     : QMainWindow(parent)
@@ -122,29 +122,40 @@ void View::setName()
 
 void View::updateScrollView()
 {
-    if (currentFrameIndex < 0 || currentFrameIndex >= model.getSize()) {
-        qWarning() << "Invalid currentFrameIndex:" << currentFrameIndex;
-        return;
+    int imageScalar = 4; // Scroll window images scalar factor.
+
+    QLayoutItem *item;
+    while ((item = layout->takeAt(0)) != nullptr) {
+        delete item->widget();
+        delete item;
     }
 
-    QImage canvasImage = model.getFrame(currentFrameIndex);
-    if (canvasImage.isNull()) {
-        qWarning() << "Canvas image is null!";
-        return;
+    for (int i = 0; i < model.getSize(); ++i) {
+        QImage canvasImage = model.getFrame(i);
+        if (canvasImage.isNull()) {
+            qWarning() << "Canvas image is null for frame:" << i;
+            continue;
+        }
+
+        std::cout << "Frame " << i << " Image Dimensions: " << canvasImage.width() << " x " << canvasImage.height() << std::endl; //TODO: Remove line
+
+        QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
+        imageLabel->setScaledContents(true);
+        imageLabel->setStyleSheet("border: 1px solid red;");
+        QPixmap pixmap = QPixmap::fromImage(canvasImage);
+        if (pixmap.isNull()) {
+            qWarning() << "Failed to convert QImage to QPixmap for frame:" << i;
+            continue;
+        }
+
+        imageLabel->setPixmap(pixmap);
+        imageLabel->setFixedSize(canvasImage.width() * imageScalar, canvasImage.height() * imageScalar); // Scroll window images size.
+        layout->addWidget(imageLabel);
     }
-
-
-    QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
-    imageLabel->setScaledContents(true);
-    imageLabel->setFixedSize(100, 100);
-    imageLabel->setStyleSheet("border: 1px solid red;");
-
-    QPixmap pixmap = QPixmap::fromImage(canvasImage);
-    imageLabel->setPixmap(pixmap);
-    layout->addWidget(imageLabel);
-
     layout->update();
 }
+
+
 
 void View::showSaveFileDialog()
 {

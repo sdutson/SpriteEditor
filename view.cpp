@@ -130,10 +130,10 @@ void View::updateScrollView()
         delete item;
     }
 
-    for (int i = 0; i < model.getSize(); ++i) {
+    for (int i = 1; i < model.getSize(); ++i) { // Keep starting int at 1 to avoid extra blank frame.
         QImage canvasImage = model.getFrame(i);
         if (canvasImage.isNull()) {
-            qWarning() << "Canvas image is null for frame:" << i;
+            qWarning() << "Canvas image is null for frame: " << i;
             continue;
         }
 
@@ -141,10 +141,10 @@ void View::updateScrollView()
 
         QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
         imageLabel->setScaledContents(true);
-        imageLabel->setStyleSheet("border: 1px solid red;");
+        imageLabel->setStyleSheet("border: 1px solid rgb(225, 245, 247);"); // Adjusts the border window color.
         QPixmap pixmap = QPixmap::fromImage(canvasImage);
         if (pixmap.isNull()) {
-            qWarning() << "Failed to convert QImage to QPixmap for frame:" << i;
+            qWarning() << "Failed to convert QImage to QPixmap for frame: " << i;
             continue;
         }
 

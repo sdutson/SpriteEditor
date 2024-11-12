@@ -38,7 +38,7 @@ void AnimationBox::paintEvent(QPaintEvent *event)
     {
         // Hardcoded default frame for when program starts, needs to be kept in sync with canvas.
         QPainter painter(this);
-        painter.setBrush(Qt::lightGray);
+        painter.setBrush(Qt::transparent);
         painter.setPen(Qt::NoPen);
         painter.drawRect(0, 0, width(), height());
         return;
@@ -46,9 +46,9 @@ void AnimationBox::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
     QImage scaledImage = sprite->getFrame(currentFrameIndex).scaled(size(), Qt::KeepAspectRatio);
-    painter.setBrush(Qt::lightGray);
-    painter.setPen(Qt::NoPen);
-    painter.drawRect(0, 0, width(), height());
+    // painter.setBrush(Qt::lightGray);
+    // painter.setPen(Qt::NoPen);
+    // painter.drawRect(0, 0, width(), height());
     painter.drawImage(0, 0, scaledImage);
 
     if (currentFrameIndex == sprite->getSize() - 1)

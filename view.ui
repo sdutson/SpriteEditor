@@ -157,8 +157,8 @@
      <rect>
       <x>630</x>
       <y>20</y>
-      <width>150</width>
-      <height>150</height>
+      <width>160</width>
+      <height>160</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -350,6 +350,17 @@
      </rect>
     </property>
    </widget>
+   <widget class="TransparencyGrid" name="animationBoxTransparencyGrid" native="true">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>20</y>
+      <width>160</width>
+      <height>160</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>animationBoxTransparencyGrid</zorder>
    <zorder>transparencyGrid</zorder>
    <zorder>saveButton</zorder>
    <zorder>loadButton</zorder>
@@ -375,7 +386,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

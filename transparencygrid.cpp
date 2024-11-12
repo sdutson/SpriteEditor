@@ -7,6 +7,8 @@ TransparencyGrid::TransparencyGrid(QWidget *parent)
     , ui(new Ui::TransparencyGrid)
 {
     ui->setupUi(this);
+    imageWidth = 16;
+    imageHeight = 16;
 }
 
 TransparencyGrid::~TransparencyGrid()

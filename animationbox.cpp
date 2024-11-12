@@ -6,21 +6,20 @@
 #include <iostream>
 
 AnimationBox::AnimationBox(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::AnimationBox)
-    , frameTimer(new QTimer(this))
+    : QWidget(parent),
+    ui(new Ui::AnimationBox),
+    frameTimer(new QTimer(this)),
+    sprite(nullptr) // Initialize sprite
 {
     ui->setupUi(this);
-
     connect(frameTimer, &QTimer::timeout, this, QOverload<>::of(&AnimationBox::update));
-
-    fps = 1; // Initiallize fps at 1.
+    fps = 1;
 }
 
-AnimationBox::~AnimationBox()
-{
+AnimationBox::~AnimationBox() {
     delete ui;
 }
+
 
 void AnimationBox::displayAnimation(Sprite& sprite)
 {

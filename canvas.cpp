@@ -31,6 +31,7 @@ void Canvas::paintEvent(QPaintEvent* event) {
     {
         // TODO: Render frame normally
     }
+
     QPainter painter(this);
     QImage scaledImage = image->scaled(size(), Qt::KeepAspectRatio);
     painter.setBrush(Qt::lightGray);

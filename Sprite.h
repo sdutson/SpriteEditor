@@ -11,6 +11,9 @@ using std::string;
 class Sprite {
 
 public:
+    ///
+    /// \brief Sprite - Constructor for a new sprite.
+    ///
     Sprite();
 
     ///

@@ -26,14 +26,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->penButton, &QPushButton::clicked, &model, &Model::setToolToPen);
     connect(ui->eraserButton, &QPushButton::clicked, &model, &Model::setToolToEraser);
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::addFrame);
-
-    //TODO: Delete this message when done -
-    //We need to make sure the commented out portion doesn't break any code,
-    //It appears that this was part of what was breaking the scroll view.
-    //I added the new connection so that add frame button updates the scroll view.
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::updateScrollView);
-    //connect(&model, &Model::spriteUpdated, this, &View::updateScrollView);
-
     connect(ui->deleteFrameButton, &QPushButton::clicked, this, &View::deleteFrame);
     connect(ui->saveButton, &QPushButton::clicked, this, &View::showSaveFileDialog);
     connect(ui->loadButton, &QPushButton::clicked, this, &View::showLoadFileDialog);
@@ -122,7 +115,7 @@ void View::setName()
 
 void View::updateScrollView()
 {
-    int imageScalar = 4; // Scroll window images scalar factor.
+    int imageScalar = 5; // Scroll window images scalar factor.
 
     QLayoutItem *item;
     while ((item = layout->takeAt(0)) != nullptr) {
@@ -142,7 +135,7 @@ void View::updateScrollView()
         QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
         imageLabel->setScaledContents(true);
         imageLabel->setStyleSheet("border: 1px solid rgb(225, 245, 247);"); // Adjusts the border window color.
-        QPixmap pixmap = QPixmap::fromImage(canvasImage);
+        QPixmap pixmap = QPixmap::fromImage(canvasImage.scaled(size(), Qt::KeepAspectRatio));
         if (pixmap.isNull()) {
             qWarning() << "Failed to convert QImage to QPixmap for frame: " << i;
             continue;

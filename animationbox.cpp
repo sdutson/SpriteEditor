@@ -9,7 +9,7 @@ AnimationBox::AnimationBox(QWidget *parent)
     : QWidget(parent),
     ui(new Ui::AnimationBox),
     frameTimer(new QTimer(this)),
-    sprite(nullptr) // Initialize sprite
+    sprite(nullptr)
 {
     ui->setupUi(this);
     connect(frameTimer, &QTimer::timeout, this, QOverload<>::of(&AnimationBox::update));

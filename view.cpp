@@ -95,6 +95,7 @@ void View::copyFrame()
 {
     this->currentFrameIndex = model.copyFrame(this->currentFrameIndex);
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
+    updateScrollView();
 }
 
 void View::updateDimensions()

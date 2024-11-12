@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Canvas</class>
- <widget class="QWidget" name="Canvas">
+ <class>TransparencyGrid</class>
+ <widget class="QWidget" name="TransparencyGrid">
   <property name="geometry">
    <rect>
     <x>0</x>

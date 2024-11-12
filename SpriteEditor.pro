@@ -15,6 +15,7 @@ SOURCES += \
     canvas.cpp \
     main.cpp \
     model.cpp \
+    transparencygrid.cpp \
     view.cpp
 
 HEADERS += \
@@ -23,12 +24,14 @@ HEADERS += \
     animationbox.h \
     canvas.h \
     model.h \
+    transparencygrid.h \
     view.h
 
 FORMS += \
     animationbox.ui \
     canvas.ui \
     onionskin.ui \
+    transparencygrid.ui \
     view.ui
 
 # Default rules for deployment.

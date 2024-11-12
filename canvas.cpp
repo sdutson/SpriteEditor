@@ -18,10 +18,6 @@ Canvas::~Canvas()
 }
 
 void Canvas::paintEvent(QPaintEvent* event) {
-    if (firstPaint) {
-        drawTransparencyGrid();
-        firstPaint = false;
-    }
     bool OnionSkin = true; // TODO: Replace this with signal.
     if (OnionSkin)
     {
@@ -34,9 +30,6 @@ void Canvas::paintEvent(QPaintEvent* event) {
 
     QPainter painter(this);
     QImage scaledImage = image->scaled(size(), Qt::KeepAspectRatio);
-    painter.setBrush(Qt::lightGray);
-    painter.setPen(Qt::NoPen);
-    painter.drawRect(0, 0, width(), height());
     painter.drawImage(0, 0, scaledImage);
 }
 
@@ -75,24 +68,4 @@ void Canvas::switchImage(QImage& newImage)
          }
      }
 
- }
-
- void Canvas::drawTransparencyGrid()
- {
-     QPainter painter(this);
-     painter.setPen(Qt::NoPen);
-
-     for (int x = 0; x < width(); x+=(size().width()/image->width()))
-     {
-         for (int y = 0; y < height(); y+=(size().height()/image->height()))
-         {
-             qDebug() << x << " " << y;
-             if ((x / (size().width() / image->width()) + y / (size().height() / image->height())) % 2 == 0)
-                 painter.setBrush(Qt::lightGray);
-             else
-                 painter.setBrush(Qt::white);
-
-             painter.drawRect(x, y, size().width()/image->width(), size().height()/image->height());
-         }
-     }
  }

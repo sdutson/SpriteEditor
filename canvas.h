@@ -17,7 +17,6 @@ class Canvas : public QWidget
 public:
 
     QImage* image;
-    bool firstPaint = true;
 
     explicit Canvas(QWidget *parent = nullptr);
 
@@ -29,8 +28,6 @@ private:
     Ui::Canvas *ui;
 
     void paintEvent(QPaintEvent *event) override;
-
-    void drawTransparencyGrid();
 
  protected:
     void mousePressEvent(QMouseEvent *event) override;

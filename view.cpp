@@ -16,6 +16,7 @@ View::View(Model& model, QWidget *parent)
 {
     ui->setupUi(this);
     addFrame();
+    ui->transparencyGrid->setImageSize(model.getFrame(currentFrameIndex).width(), model.getFrame(currentFrameIndex).height());
 
     ui->colorDisplay->setStyleSheet("background-color: black;");
 
@@ -99,6 +100,7 @@ void View::updateDimensions()
     QPair<int, int> newDimensions(ui->Dimension->value(), ui->Dimension->value());
     model.setSpriteDimensions(newDimensions);
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
+    ui->transparencyGrid->setImageSize(model.getFrame(this->currentFrameIndex).width(), model.getFrame(this->currentFrameIndex).height());
 }
 
 void View::updateFPS()

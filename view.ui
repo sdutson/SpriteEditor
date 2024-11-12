@@ -290,12 +290,12 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>260</x>
       <y>380</y>
-      <width>175</width>
+      <width>176</width>
       <height>96</height>
      </rect>
     </property>
@@ -337,6 +337,34 @@
      </item>
     </layout>
    </widget>
+   <widget class="TransparencyGrid" name="transparencyGrid" native="true">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>50</y>
+      <width>320</width>
+      <height>320</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>transparencyGrid</zorder>
+   <zorder>saveButton</zorder>
+   <zorder>loadButton</zorder>
+   <zorder>canvas</zorder>
+   <zorder>frames</zorder>
+   <zorder>fpsSlider</zorder>
+   <zorder>penButton</zorder>
+   <zorder>eraserButton</zorder>
+   <zorder>colorSelector</zorder>
+   <zorder>animationBox</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>fpsLabel</zorder>
+   <zorder>fpsCounter</zorder>
+   <zorder>copyFrame</zorder>
+   <zorder>colorDisplay</zorder>
+   <zorder>updateName</zorder>
+   <zorder>spriteNameText</zorder>
+   <zorder>layoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -344,7 +372,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>36</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -361,6 +389,12 @@
    <class>AnimationBox</class>
    <extends>QWidget</extends>
    <header>animationbox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TransparencyGrid</class>
+   <extends>QWidget</extends>
+   <header location="global">transparencygrid.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

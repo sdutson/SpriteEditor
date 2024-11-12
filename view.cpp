@@ -28,6 +28,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->eraserButton, &QPushButton::clicked, &model, &Model::setToolToEraser);
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::addFrame);
     connect(ui->addFrameButton, &QPushButton::clicked, this, &View::updateScrollView);
+    connect(ui->canvas, &Canvas::changePixel, this, &View::updateScrollView);
     connect(ui->deleteFrameButton, &QPushButton::clicked, this, &View::deleteFrame);
     connect(ui->saveButton, &QPushButton::clicked, this, &View::showSaveFileDialog);
     connect(ui->loadButton, &QPushButton::clicked, this, &View::showLoadFileDialog);
@@ -87,6 +88,7 @@ void View::deleteFrame()
     }
     this->currentFrameIndex = model.deleteFrame(index);
     ui->canvas->switchImage(model.getFrame(currentFrameIndex));
+    updateScrollView();
 }
 
 void View::copyFrame()
@@ -117,22 +119,18 @@ void View::setName()
 
 void View::updateScrollView()
 {
-    int imageScalar = 5; // Scroll window images scalar factor.
-
     QLayoutItem *item;
     while ((item = layout->takeAt(0)) != nullptr) {
         delete item->widget();
         delete item;
     }
 
-    for (int i = 1; i < model.getSize(); ++i) { // Keep starting int at 1 to avoid extra blank frame.
+    for (int i = 0; i < model.getSize(); ++i) {
         QImage canvasImage = model.getFrame(i);
         if (canvasImage.isNull()) {
             qWarning() << "Canvas image is null for frame: " << i;
             continue;
         }
-
-        std::cout << "Frame " << i << " Image Dimensions: " << canvasImage.width() << " x " << canvasImage.height() << std::endl; //TODO: Remove line
 
         QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
         imageLabel->setScaledContents(true);
@@ -144,7 +142,7 @@ void View::updateScrollView()
         }
 
         imageLabel->setPixmap(pixmap);
-        imageLabel->setFixedSize(canvasImage.width() * imageScalar, canvasImage.height() * imageScalar); // Scroll window images size.
+        imageLabel->setFixedSize(80, 80); // Set label size such that it fits neatly in the scorll view.
         layout->addWidget(imageLabel);
     }
     layout->update();

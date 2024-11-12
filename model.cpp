@@ -21,7 +21,6 @@ void Model::changePixel(QImage& imageToUpdate, int x, int y)
     {
         imageToUpdate.setPixelColor(x, y, penColor);
     }
-    emit spriteUpdated();
     emit displayAnimation(sprite);
 }
 
@@ -43,7 +42,6 @@ void Model::setColor(QColor color)
 int Model::addFrame(int index)
 {
     return sprite.addFrame(index);
-    emit spriteUpdated();
 }
 
 QImage& Model::getFrame(int index)
@@ -54,7 +52,6 @@ QImage& Model::getFrame(int index)
 int Model::deleteFrame(int index)
 {
     return sprite.deleteFrame(index);
-    emit spriteUpdated();
 }
 
 int Model::copyFrame(int index)

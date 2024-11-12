@@ -90,7 +90,6 @@ public slots:
     void setColor(QColor color);
 
 signals:
-    void spriteUpdated();
     void displayAnimation(Sprite& sprite);
     void resetView();
 };

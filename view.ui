@@ -360,6 +360,19 @@
      </rect>
     </property>
    </widget>
+   <widget class="QCheckBox" name="onionSkinToggleBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>260</y>
+      <width>85</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Onion Skin</string>
+    </property>
+   </widget>
    <zorder>animationBoxTransparencyGrid</zorder>
    <zorder>transparencyGrid</zorder>
    <zorder>saveButton</zorder>
@@ -379,6 +392,7 @@
    <zorder>updateName</zorder>
    <zorder>spriteNameText</zorder>
    <zorder>layoutWidget</zorder>
+   <zorder>onionSkinToggleBox</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -386,7 +400,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

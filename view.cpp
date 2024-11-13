@@ -43,7 +43,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->Dimension, &QSpinBox::valueChanged, this, &View::updateDimensions);
     connect(ui->jumpToFrame, &QPushButton::clicked, this, &View::jumpToFrame);
     connect(ui->updateName, &QPushButton::clicked, this, &View::setName);
-    // TODO: Connect OnionSkin button to canvas, should not be linked through model as OnionSkin is a purely visual change.
+    connect(ui->onionSkinToggleBox, &QPushButton::clicked, ui->canvas, &Canvas::toggleOnionSkin);
 
     ui->fpsCounter->display(1);
 
@@ -69,7 +69,7 @@ void View::addFrame()
         index = 0;
     }
     this->currentFrameIndex = model.addFrame(index);
-    ui->canvas->switchImage(model.getFrame(currentFrameIndex));
+    ui->canvas->switchImage(model.getFrame(currentFrameIndex), model.getFrame(currentFrameIndex - 1), model.getFrame(currentFrameIndex + 1));
 }
 
 void View::deleteFrame()
@@ -88,14 +88,14 @@ void View::deleteFrame()
         index = 0;
     }
     this->currentFrameIndex = model.deleteFrame(index);
-    ui->canvas->switchImage(model.getFrame(currentFrameIndex));
+    ui->canvas->switchImage(model.getFrame(currentFrameIndex), model.getFrame(currentFrameIndex - 1), model.getFrame(currentFrameIndex + 1));
     updateScrollView();
 }
 
 void View::copyFrame()
 {
     this->currentFrameIndex = model.copyFrame(this->currentFrameIndex);
-    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
+    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex), model.getFrame(this->currentFrameIndex - 1), model.getFrame(this->currentFrameIndex + 1));
     updateScrollView();
 }
 
@@ -103,7 +103,7 @@ void View::updateDimensions()
 {
     QPair<int, int> newDimensions(ui->Dimension->value(), ui->Dimension->value());
     model.setSpriteDimensions(newDimensions);
-    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
+    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex), model.getFrame(this->currentFrameIndex - 1), model.getFrame(this->currentFrameIndex + 1));
     ui->transparencyGrid->setImageSize(model.getFrame(this->currentFrameIndex).width(), model.getFrame(this->currentFrameIndex).height());
     ui->animationBoxTransparencyGrid->setImageSize(model.getFrame(currentFrameIndex).width(), model.getFrame(currentFrameIndex).height());
 }
@@ -176,7 +176,7 @@ void View::showColorDialog()
 void View::resetView()
 {
     this->currentFrameIndex = 0;
-    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
+    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex), model.getFrame(this->currentFrameIndex - 1), model.getFrame(this->currentFrameIndex + 1));
     ui->spriteNameText->setPlainText(model.getName());
     updateScrollView();
 }
@@ -184,12 +184,5 @@ void View::resetView()
 void View::jumpToFrame()
 {
     this->currentFrameIndex = ui->jumpToIndex->value();
-    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex));
+    ui->canvas->switchImage(model.getFrame(this->currentFrameIndex), model.getFrame(this->currentFrameIndex - 1), model.getFrame(this->currentFrameIndex + 1));
 }
-
-
-
-
-
-
-

@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QImage>
 #include <QSize>
+#include "Sprite.h"
 
 namespace Ui {
 class Canvas;
@@ -18,22 +19,32 @@ public:
 
     QImage* image;
 
+    QImage* prevImage;
+
+    QImage* nextImage;
+
     explicit Canvas(QWidget *parent = nullptr);
 
     ~Canvas();
 
-    void switchImage(QImage& newImage);
+    void switchImage(QImage& newImage, QImage& newPrevImage, QImage& newNextImage);
 
 private:
     Ui::Canvas *ui;
 
     void paintEvent(QPaintEvent *event) override;
 
- protected:
+    bool onionSkinToggled = false;
+
+    void renderOnionSkin(QPainter& painter, QImage* frame);
+
+protected:
     void mousePressEvent(QMouseEvent *event) override;
 
     void mouseMoveEvent(QMouseEvent *event) override;
 
+public slots:
+    void toggleOnionSkin();
 
 signals:
     void changePixel(QImage& imageToUpdate, int x, int y);

@@ -64,7 +64,9 @@ QImage& Sprite::getFrame(int index)
     }
     catch(...)
     {
-        return frames.at(frames.size() -1);
+        static QImage transparentImage(dimensions.first, dimensions.second, QImage::Format_ARGB32);
+        transparentImage.fill(Qt::transparent);
+        return transparentImage;
     }
 }
 

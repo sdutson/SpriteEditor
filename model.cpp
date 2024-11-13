@@ -97,7 +97,6 @@ void Model::loadSprite(QString filepath)
             qWarning("Could not open file"); // Catch for bad filepath.
             return;
         }
-
         QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
         if (jsonDoc.isNull() || !jsonDoc.isObject()) {
             qWarning("Invalid JSON format"); // Catch for bad JSON.

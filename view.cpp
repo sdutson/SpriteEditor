@@ -127,14 +127,12 @@ void View::updateScrollView()
         delete item->widget();
         delete item;
     }
-
     for (int i = 0; i < model.getSize(); ++i) {
         QImage canvasImage = model.getFrame(i);
         if (canvasImage.isNull()) {
             qWarning() << "Canvas image is null for frame: " << i;
             continue;
         }
-
         QLabel *imageLabel = new QLabel(ui->scrollAreaWidgetContents);
         imageLabel->setScaledContents(true);
         imageLabel->setStyleSheet("border: 1px solid rgb(225, 245, 247);"); // Adjusts the border window color.
@@ -143,15 +141,12 @@ void View::updateScrollView()
             qWarning() << "Failed to convert QImage to QPixmap for frame: " << i;
             continue;
         }
-
         imageLabel->setPixmap(pixmap);
         imageLabel->setFixedSize(80, 80); // Set label size such that it fits neatly in the scorll view.
         layout->addWidget(imageLabel);
     }
     layout->update();
 }
-
-
 
 void View::showSaveFileDialog()
 {

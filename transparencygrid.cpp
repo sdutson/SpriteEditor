@@ -30,7 +30,6 @@ void TransparencyGrid::drawTransparencyGrid()
 {
     QPainter painter(this);
     painter.setPen(Qt::NoPen);
-
     for (int x = 0; x < width(); x+=(size().width()/imageWidth))
     {
         for (int y = 0; y < height(); y+=(size().height()/imageHeight))

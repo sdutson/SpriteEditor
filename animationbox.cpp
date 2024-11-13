@@ -39,11 +39,9 @@ void AnimationBox::paintEvent(QPaintEvent *event)
     {
         return;
     }
-
     QPainter painter(this);
     QImage scaledImage = sprite->getFrame(currentFrameIndex).scaled(size(), Qt::KeepAspectRatio);
     painter.drawImage(0, 0, scaledImage);
-
     if (currentFrameIndex == sprite->getSize() - 1)
     {
         currentFrameIndex = 0;
@@ -57,7 +55,6 @@ void AnimationBox::paintEvent(QPaintEvent *event)
 void AnimationBox::changeFPS(int newFPS)
 {
     fps = newFPS;
-
     // Update the animation fps if a sprite is loaded
     if (sprite) {
         displayAnimation(*sprite);

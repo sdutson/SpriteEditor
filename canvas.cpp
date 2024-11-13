@@ -21,7 +21,6 @@ void Canvas::paintEvent(QPaintEvent* event)
     QPainter painter(this);
     const double OPACITY_FULL = 1.0;
     const double OPACITY_ONION = 0.6;
-
     if (onionSkinToggled)
     {
         renderImage(painter, prevImage, OPACITY_ONION);
@@ -67,7 +66,6 @@ void Canvas::mouseMoveEvent(QMouseEvent *event)
     {
         int x = event->pos().x()/(size().width()/image->width());
         int y = event->pos().y()/(size().height()/image->height());
-
         if (x >= 0 && x < image->width() && y >= 0 && y < image->height())
         {
             emit changePixel(*image, x, y);

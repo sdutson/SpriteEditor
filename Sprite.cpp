@@ -9,6 +9,10 @@
 
 using std::vector;
 
+///
+/// \brief Sprite class - Stores and updates all needed data for a sprite object.
+/// Reviewed By: Sam Dutson - u1406827
+
 Sprite::Sprite()
 {
     vector<QImage> frames;

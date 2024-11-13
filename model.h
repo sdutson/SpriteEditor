@@ -8,6 +8,9 @@
 #include <QPair>
 #include "Sprite.h"
 
+///
+/// \brief The Model class - Header file for the model class.
+///
     class Model : public QObject
 {
     Q_OBJECT
@@ -19,8 +22,12 @@ public:
 
     QColor penColor = {Qt::black};
 
-    bool erasing = false; //TODO: change to enum
+    bool erasing = false;
 
+    ///
+    /// \brief Model - Constructor for a model.
+    /// \param parent - Not used.
+    ///
     explicit Model(QObject *parent = nullptr);
 
     ///
@@ -84,13 +91,40 @@ public:
     QString getName();
 
 public slots:
+    ///
+    /// \brief changePixel - Updates the desired pixel in the given image. Either erases or draws(determined by the state of the 'erasing' var).
+    /// \param imageToUpdate - The image to update.
+    /// \param x - The x coordinate of the pixel to edit.
+    /// \param y - The y coordinate of the pixel to edit.
+    ///
     void changePixel(QImage& imageToUpdate, int x, int y);
+
+    ///
+    /// \brief setToolToPen - Sets the drawing tool to a pen.
+    ///
     void setToolToPen();
+
+    ///
+    /// \brief setToolToEraser - Sets the drawing tool to an eraser.
+    ///
     void setToolToEraser();
+
+    ///
+    /// \brief setColor - Sets the penColr for the model.
+    /// \param color - The color to set the pen to.
+    ///
     void setColor(QColor color);
 
 signals:
+    ///
+    /// \brief displayAnimation - Informs the view to display an animation.
+    /// \param sprite - The sprite who's animation is to be displayed.
+    ///
     void displayAnimation(Sprite& sprite);
+
+    ///
+    /// \brief resetView - Resets the view to the contents of a new sprite(Emmited after user loads in a new sprite.).
+    ///
     void resetView();
 };
 

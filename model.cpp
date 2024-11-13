@@ -6,6 +6,10 @@
 #include <QFile>
 #include <QJsonDocument>
 
+///
+/// \brief Model - Stores and updates all data needed for the sprite editor.
+///
+
 Model::Model(QObject *parent) : QObject(parent)
 {
     Sprite sprite;
@@ -113,9 +117,6 @@ void Model::loadSprite(QString filepath)
         qWarning("Failed to load Json.");
         return;
     }
-    qWarning("Loaded sprite");
-    // TODO: Warn user if data if going to be overwriten.
-    // delete this->sprite; // TODO: Do we need to delete the old sprite?
     this->sprite = loadedSprite;
     emit resetView();
     emit displayAnimation(sprite);

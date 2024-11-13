@@ -8,6 +8,9 @@
 using std::vector;
 using std::string;
 
+///
+/// \brief The Sprite class - Header file for the Sprtie class.
+///
 class Sprite {
 
 public:
@@ -56,8 +59,8 @@ public:
     QString getName();
 
     ///
-    /// \brief setDimensions
-    /// \param dimensions
+    /// \brief setDimensions - Updates the dimensions of the sprite.
+    /// \param dimensions - The new dimensions
     ///
     void setDimensions(QPair<int, int> dimensions);
 
@@ -80,17 +83,13 @@ public:
     static Sprite loadFromJSON(QJsonObject spriteJson);
 
 private:
-
-    ///
-    /// \brief dimensions - The dimensions of the canvas.
-    ///
-    QPair<int, int> dimensions = {16, 16}; // TODO: Change this to whatever we want our default dimensions to be. Note. This will have to be able to be changed later on.
+    QPair<int, int> dimensions = {16, 16};
 
     vector<QImage> frames;
 
     QString name;
 
-    int size = {0}; // The number of frames in the sprite.
+    int size = {0};
 
 };
 

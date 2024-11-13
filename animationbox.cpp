@@ -4,6 +4,11 @@
 #include <QImage>
 #include <QPainter>
 
+///
+/// \brief AnimationBox - Stores the information to implement the Animation box and fps slider.
+/// Review By: David Nixon - U1115706
+///
+
 AnimationBox::AnimationBox(QWidget *parent)
     : QWidget(parent),
     ui(new Ui::AnimationBox),

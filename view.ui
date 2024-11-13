@@ -305,7 +305,7 @@
        <item>
         <widget class="QComboBox" name="Dimension">
          <property name="currentText">
-          <string>8</string>
+          <string>16</string>
          </property>
          <item>
           <property name="text">

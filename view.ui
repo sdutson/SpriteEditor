@@ -298,7 +298,7 @@
      <rect>
       <x>260</x>
       <y>380</y>
-      <width>176</width>
+      <width>224</width>
       <height>96</height>
      </rect>
     </property>
@@ -313,13 +313,30 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="Dimension">
-         <property name="minimum">
-          <number>16</number>
+        <widget class="QComboBox" name="Dimension">
+         <property name="currentText">
+          <string>16</string>
          </property>
-         <property name="maximum">
-          <number>49</number>
-         </property>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>
@@ -400,7 +417,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>

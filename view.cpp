@@ -40,7 +40,7 @@ View::View(Model& model, QWidget *parent)
     connect(ui->fpsSlider, &QSlider::valueChanged, this, &View::updateFPS);
     connect(&model, &Model::resetView, this, &View::resetView);
     connect(ui->copyFrame, &QPushButton::clicked, this, &View::copyFrame);
-    connect(ui->Dimension, &QSpinBox::valueChanged, this, &View::updateDimensions);
+    connect(ui->Dimension, &QComboBox::currentIndexChanged, this, &View::updateDimensions);
     connect(ui->jumpToFrame, &QPushButton::clicked, this, &View::jumpToFrame);
     connect(ui->updateName, &QPushButton::clicked, this, &View::setName);
     connect(ui->onionSkinToggleBox, &QPushButton::clicked, ui->canvas, &Canvas::toggleOnionSkin);
@@ -101,7 +101,7 @@ void View::copyFrame()
 
 void View::updateDimensions()
 {
-    QPair<int, int> newDimensions(ui->Dimension->value(), ui->Dimension->value());
+    QPair<int, int> newDimensions(ui->Dimension->currentText().toInt(), ui->Dimension->currentText().toInt());
     model.setSpriteDimensions(newDimensions);
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex), model.getFrame(this->currentFrameIndex - 1), model.getFrame(this->currentFrameIndex + 1));
     ui->transparencyGrid->setImageSize(model.getFrame(this->currentFrameIndex).width(), model.getFrame(this->currentFrameIndex).height());

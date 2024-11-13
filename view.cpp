@@ -117,7 +117,7 @@ void View::updateFPS()
 
 void View::setName()
 {
-    model.setName(ui->spriteNameText->toPlainText().toStdString());
+    model.setName(ui->spriteNameText->text().toStdString());
 }
 
 void View::updateScrollView()
@@ -177,7 +177,7 @@ void View::resetView()
 {
     this->currentFrameIndex = 0;
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex), model.getFrame(this->currentFrameIndex - 1), model.getFrame(this->currentFrameIndex + 1));
-    ui->spriteNameText->setPlainText(model.getName());
+    ui->spriteNameText->setText(model.getName());
     updateScrollView();
 }
 

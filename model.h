@@ -10,6 +10,7 @@
 
 ///
 /// \brief The Model class - Header file for the model class.
+/// Reviewed By: Sam Dutson - u1406827
 ///
     class Model : public QObject
 {

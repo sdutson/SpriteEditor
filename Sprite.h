@@ -10,6 +10,7 @@ using std::string;
 
 ///
 /// \brief The Sprite class - Header file for the Sprtie class.
+/// Reviewed By: Sam Dutson - u1406827
 ///
 class Sprite {
 

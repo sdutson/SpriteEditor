@@ -8,7 +8,7 @@
 
 ///
 /// \brief Model - Stores and updates all data needed for the sprite editor.
-///
+/// Review By; Sam Dutson - u1406827
 
 Model::Model(QObject *parent) : QObject(parent)
 {

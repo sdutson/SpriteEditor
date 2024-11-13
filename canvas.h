@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QImage>
 #include <QSize>
-#include "Sprite.h"
 
 namespace Ui {
 class Canvas;

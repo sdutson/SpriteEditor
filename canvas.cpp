@@ -3,7 +3,6 @@
 #include <QImage>
 #include <QSize>
 #include <QMouseEvent>
-#include <QDebug>
 
 Canvas::Canvas(QWidget *parent)
     : QWidget(parent)

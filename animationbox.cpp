@@ -3,7 +3,6 @@
 #include <QTimer>
 #include <QImage>
 #include <QPainter>
-#include <iostream>
 
 AnimationBox::AnimationBox(QWidget *parent)
     : QWidget(parent),
@@ -16,7 +15,8 @@ AnimationBox::AnimationBox(QWidget *parent)
     fps = 1;
 }
 
-AnimationBox::~AnimationBox() {
+AnimationBox::~AnimationBox()
+{
     delete ui;
 }
 
@@ -35,23 +35,13 @@ void AnimationBox::displayAnimation(Sprite& sprite)
 
 void AnimationBox::paintEvent(QPaintEvent *event)
 {
-    // std::cout << "In AnimationBox paintEvent" << std::endl; // TODO: Remove me
-
     if (!sprite)
     {
-        // Hardcoded default frame for when program starts, needs to be kept in sync with canvas.
-        QPainter painter(this);
-        painter.setBrush(Qt::transparent);
-        painter.setPen(Qt::NoPen);
-        painter.drawRect(0, 0, width(), height());
         return;
     }
 
     QPainter painter(this);
     QImage scaledImage = sprite->getFrame(currentFrameIndex).scaled(size(), Qt::KeepAspectRatio);
-    // painter.setBrush(Qt::lightGray);
-    // painter.setPen(Qt::NoPen);
-    // painter.drawRect(0, 0, width(), height());
     painter.drawImage(0, 0, scaledImage);
 
     if (currentFrameIndex == sprite->getSize() - 1)

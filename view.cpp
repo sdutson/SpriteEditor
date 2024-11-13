@@ -171,6 +171,8 @@ void View::showColorDialog()
 void View::resetView()
 {
     this->currentFrameIndex = 0;
+    ui->Dimension->setCurrentIndex(log2(model.getFrame(currentFrameIndex).width()) - 3);
+    updateDimensions();
     ui->canvas->switchImage(model.getFrame(this->currentFrameIndex), model.getFrame(this->currentFrameIndex - 1), model.getFrame(this->currentFrameIndex + 1));
     ui->spriteNameText->setText(model.getName());
     updateScrollView();

@@ -16,21 +16,21 @@ class AnimationBox : public QWidget
     Q_OBJECT
 
 public:
-    int fps;
-
     explicit AnimationBox(QWidget *parent = nullptr);
 
     ~AnimationBox();
 
 private:
+    int fps;
     Ui::AnimationBox *ui;
-
     QTimer* frameTimer;
-
     Sprite* sprite;
-
     int currentFrameIndex;
 
+    ///
+    /// \brief paintEvent -
+    /// \param event -
+    ///
     void paintEvent(QPaintEvent *event) override;
 
 public slots:

@@ -16,37 +16,65 @@ class Canvas : public QWidget
     Q_OBJECT
 
 public:
-
-    QImage* image;
-
-    QImage* prevImage;
-
-    QImage* nextImage;
-
     explicit Canvas(QWidget *parent = nullptr);
 
     ~Canvas();
 
+    ///
+    /// \brief switchImage - switch the current selected images to new ones.
+    /// \param newImage - the new currently displayed image.
+    /// \param newPrevImage - the new previously displayed image.
+    /// \param newNextImage - the new next displayed image.
+    ///
     void switchImage(QImage& newImage, QImage& newPrevImage, QImage& newNextImage);
 
 private:
+    QImage* image;
+    QImage* prevImage;
+    QImage* nextImage;
+    bool onionSkinToggled = false;
     Ui::Canvas *ui;
 
+    ///
+    /// \brief paintEvent - redraws the screen.
+    /// \param event - unused.
+    ///
     void paintEvent(QPaintEvent *event) override;
 
-    bool onionSkinToggled = false;
-
-    void renderImage(QPainter& painter, QImage* frame, const double opacity);
+    ///
+    /// \brief renderImage - displays the image onto the canvas.
+    /// \param painter - the painter object used to draw to the canvas.
+    /// \param image - the image to draw onto the canvas.
+    /// \param opacity - 0 is fully transparent, 1 is fully opaque.
+    ///
+    void renderImage(QPainter& painter, QImage* image, const double opacity);
 
 protected:
+    ///
+    /// \brief mousePressEvent - override that emits changePixel signal to model
+    /// \param event - mouse event trigger that is used for the location of the cursor during event
+    ///
     void mousePressEvent(QMouseEvent *event) override;
 
+    ///
+    /// \brief mousePressEvent - override that emits changePixel signal to model
+    /// \param event - mouse event trigger that is used for the location of the cursor during event
+    ///
     void mouseMoveEvent(QMouseEvent *event) override;
 
 public slots:
+    ///
+    /// \brief toggleOnionSkin - toggles the onion skin feature on/off.
+    ///
     void toggleOnionSkin();
 
 signals:
+    ///
+    /// \brief changePixel - signal to modify pixel.
+    /// \param imageToUpdate - the image that should have pixels modified.
+    /// \param x - the x coordinate of the pixel.
+    /// \param y - the y coordinate of the pixel.
+    ///
     void changePixel(QImage& imageToUpdate, int x, int y);
 
 };

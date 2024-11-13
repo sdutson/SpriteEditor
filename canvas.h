@@ -36,7 +36,7 @@ private:
 
     bool onionSkinToggled = false;
 
-    void renderOnionSkin(QPainter& painter, QImage* frame);
+    void renderImage(QPainter& painter, QImage* frame, const double opacity);
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

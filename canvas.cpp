@@ -20,26 +20,22 @@ Canvas::~Canvas()
 void Canvas::paintEvent(QPaintEvent* event)
 {
     QPainter painter(this);
+    const double OPACITY_FULL = 1.0;
+    const double OPACITY_ONION = 0.6;
 
     if (onionSkinToggled)
     {
-        renderOnionSkin(painter, prevImage);
-        renderOnionSkin(painter, nextImage);
+        renderImage(painter, prevImage, OPACITY_ONION);
+        renderImage(painter, nextImage, OPACITY_ONION);
     }
-
-    const double OPACITY_FULL = 1.0;
-    painter.setOpacity(OPACITY_FULL);
-
-    QImage scaledImage = image->scaled(size(), Qt::KeepAspectRatio);
-    painter.drawImage(0, 0, scaledImage);
+    renderImage(painter, image, OPACITY_FULL);
 }
 
-void Canvas::renderOnionSkin(QPainter& painter, QImage* frame)
+void Canvas::renderImage(QPainter& painter, QImage* image, const double opacity)
 {
-    const double OPACITY_ONION = 0.6;
-    painter.setOpacity(OPACITY_ONION);
 
-    QImage scaledImage = frame->scaled(size(), Qt::KeepAspectRatio);
+    painter.setOpacity(opacity);
+    QImage scaledImage = image->scaled(size(), Qt::KeepAspectRatio);
     painter.drawImage(0, 0, scaledImage);
 }
 

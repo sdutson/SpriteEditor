@@ -14,6 +14,9 @@ class View;
 }
 QT_END_NAMESPACE
 
+///
+/// \brief The View class - Represents the view of the SpriteEditor.
+///
 class View : public QMainWindow
 {
     Q_OBJECT
@@ -69,6 +72,9 @@ private slots:
     void showLoadFileDialog();
 
 
+    ///
+    /// \brief showColorDialog - Sends signal to prompt user with color picker.
+    ///
     void showColorDialog();
 
     ///
@@ -92,7 +98,16 @@ private slots:
     void setName();
 
 signals:
+    ///
+    /// \brief changeFPS - Signal to change fps.
+    /// \param newFps - New fps value.
+    ///
     void changeFPS(int newFps);
+
+    ///
+    /// \brief setColor - Signal to set color.
+    /// \param color - New color to set it to.
+    ///
     void setColor(QColor color);
 
 };

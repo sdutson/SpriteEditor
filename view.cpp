@@ -5,10 +5,13 @@
 #include <QLabel>
 #include <QImage>
 #include <QString>
-#include <QDebug>
 #include <QMessageBox>
-#include <iostream>
 
+///
+/// \brief View::View - This class represents the view for the Sprite Editor.
+/// \param model - The model for the sprite editor, which contains logic for the functionality of the program.
+/// \param parent - Inherits behaviors from QWidget.
+///
 View::View(Model& model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
@@ -48,7 +51,7 @@ View::View(Model& model, QWidget *parent)
     ui->fpsCounter->display(1);
 
     QPalette palette = ui->fpsCounter->palette();
-    palette.setColor(QPalette::WindowText, QColor(172, 226, 252));  // Set the digit color
+    palette.setColor(QPalette::WindowText, QColor(172, 226, 252));  // Set the digit color.
     ui->fpsCounter->setPalette(palette);
 }
 
@@ -60,11 +63,11 @@ View::~View()
 void View::addFrame()
 {
     int index = ui->spinBox->value();
-    if(index > model.getSize())
+    if (index > model.getSize())
     {
         index = model.getSize();
     }
-    else if(index < 0)
+    else if (index < 0)
     {
         index = 0;
     }
@@ -74,12 +77,12 @@ void View::addFrame()
 
 void View::deleteFrame()
 {
-    if(model.getSize() <= 1)
+    if (model.getSize() <= 1)
     {
         return;
     }
     int index = ui->deleteIndex->value();
-    if(index > model.getSize() - 1)
+    if (index > model.getSize() - 1)
     {
         index = model.getSize() - 1;
     }
@@ -142,7 +145,7 @@ void View::updateScrollView()
             continue;
         }
         imageLabel->setPixmap(pixmap);
-        imageLabel->setFixedSize(80, 80); // Set label size such that it fits neatly in the scorll view.
+        imageLabel->setFixedSize(80, 80); // Set label size such that it fits neatly in the scroll view.
         layout->addWidget(imageLabel);
     }
     layout->update();

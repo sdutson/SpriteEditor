@@ -76,7 +76,7 @@ QImage& Sprite::getFrame(int index)
 
 void Sprite::setName(const string& newName)
 {
-    this->name = QString::fromStdString(newName); // TODO: How to change this?
+    this->name = QString::fromStdString(newName);
 }
 
 int Sprite::getSize()

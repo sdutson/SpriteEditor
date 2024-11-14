@@ -4,7 +4,11 @@
 #include <QWidget>
 #include <QPainter>
 #include <QImage>
-#include <QSize>
+
+///
+/// \brief canvas.h - Header file for the canvas class.
+/// Review By: Will Jackson - u0710534
+///
 
 namespace Ui {
 class Canvas;
@@ -15,8 +19,16 @@ class Canvas : public QWidget
     Q_OBJECT
 
 public:
+
+    ///
+    /// \brief Canvas - Constructor for a canvas.
+    /// \param parent - Not used.
+    ///
     explicit Canvas(QWidget *parent = nullptr);
 
+    ///
+    /// \brief ~Canvas - Destructor for a canvas.
+    ///
     ~Canvas();
 
     ///

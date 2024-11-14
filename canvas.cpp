@@ -1,8 +1,12 @@
 #include "canvas.h"
 #include "ui_canvas.h"
 #include <QImage>
-#include <QSize>
 #include <QMouseEvent>
+
+///
+/// \brief canvas.cpp - Custom widget that allows a user to draw and erase on an image.
+/// Reviewed By: Will Jackson - u0710534
+///
 
 Canvas::Canvas(QWidget *parent)
     : QWidget(parent)
@@ -47,7 +51,6 @@ void Canvas::switchImage(QImage& newImage, QImage& newPrevImage, QImage& newNext
 
 void Canvas::mousePressEvent(QMouseEvent *event)
 {
-    // TODO: When the image is scaled up, this doesn't color the correct pixels.
     if (event->button() == Qt::LeftButton)
     {
         int x = event->pos().x()/(size().width()/image->width());
